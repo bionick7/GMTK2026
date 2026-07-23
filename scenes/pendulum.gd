@@ -9,7 +9,7 @@ var max_mana: int = 10
 # Alias for value
 var player_mana: int:
 	get(): return value
-	set(x): value = x
+	#set(x): value = x
 
 # Tied to Mana
 var enemy_mana:
@@ -17,5 +17,12 @@ var enemy_mana:
 
 func _ready() -> void:
 	min_value = 0
-	max_mana = max_mana
+	max_value = max_mana
 	value = initial_mana
+	prints(value, initial_mana)
+
+func use_player_mana(x: int) -> void:
+	value -= x
+	
+func use_enemy_mana(x: int) -> void:
+	value += x

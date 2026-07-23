@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://coy4im5ud2r8t"]
+[gd_scene load_steps=8 format=3 uid="uid://coy4im5ud2r8t"]
 
 [ext_resource type="Script" uid="uid://bwqf5cfq6u65a" path="res://scenes/action_menu.gd" id="1_03mqw"]
 [ext_resource type="Texture2D" uid="uid://ip2qge18baa2" path="res://assets/sprites/UI/skills menu/Skills_menu_container.png" id="1_irjmx"]
+[ext_resource type="FontFile" uid="uid://jcsg5f74m1ic" path="res://assets/fonts/m5x7.ttf" id="4_03mqw"]
+[ext_resource type="PackedScene" uid="uid://cgo5nycikcghp" path="res://scenes/action_button.tscn" id="5_u14yf"]
 [ext_resource type="Texture2D" uid="uid://blry5awycta02" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_description.png" id="6_sqd1j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_irjmx"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03mqw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u14yf"]
+[sub_resource type="LabelSettings" id="LabelSettings_03mqw"]
+font = ExtResource("4_03mqw")
 
 [node name="ActionMenu" type="Control"]
 layout_mode = 3
@@ -30,7 +31,7 @@ offset_right = 201.0
 offset_bottom = 105.0
 texture = ExtResource("6_sqd1j")
 
-[node name="TextEdit" type="TextEdit" parent="Description"]
+[node name="TextEdit" type="Label" parent="Description"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,13 +42,38 @@ offset_right = -4.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_03mqw")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_irjmx")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_03mqw")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_u14yf")
+label_settings = SubResource("LabelSettings_03mqw")
+autowrap_mode = 1
+clip_text = true
+text_overrun_behavior = 4
+ellipsis_char = "_"
 
 [node name="V" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 13.0
+offset_top = 10.0
 offset_right = 89.0
-offset_bottom = 72.0
+offset_bottom = 104.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Up" type="Button" parent="V"]
+layout_mode = 2
+
+[node name="ActionButton" parent="V" instance=ExtResource("5_u14yf")]
+layout_mode = 2
+
+[node name="ActionButton2" parent="V" instance=ExtResource("5_u14yf")]
+layout_mode = 2
+
+[node name="ActionButton3" parent="V" instance=ExtResource("5_u14yf")]
+layout_mode = 2
+
+[node name="Down" type="Button" parent="V"]
+layout_mode = 2
+
+[connection signal="pressed" from="V/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="V/Down" to="." method="_on_down_pressed"]

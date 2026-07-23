@@ -1,15 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=26 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
 [ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
 [ext_resource type="PackedScene" uid="uid://cwdd7w25lcvgk" path="res://scenes/pendulum.tscn" id="3_q4i1q"]
+[ext_resource type="Script" uid="uid://cs2rfgqjdyxah" path="res://scenes/enemy_logic.gd" id="3_qvnly"]
 [ext_resource type="Texture2D" uid="uid://b03uw4oqfhjch" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
 [ext_resource type="Texture2D" uid="uid://4pogvk30a3yf" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
 [ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
 [ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
-[ext_resource type="Texture2D" uid="uid://camc06q4l0s8v" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
+[ext_resource type="Texture2D" uid="uid://bkmgu1ya50lti" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
 [ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
 [ext_resource type="Texture2D" uid="uid://dnfc3s526nwut" path="res://assets/sprites/UI/Character portraits/Portrait_container.png" id="12_d25nc"]
 [ext_resource type="Texture2D" uid="uid://bxbmgqfcyrqu4" path="res://assets/sprites/UI/Character portraits/Default.png" id="13_qvnly"]
@@ -49,18 +50,24 @@ events = [SubResource("InputEventKey_fswbb")]
 script = ExtResource("10_u0g26")
 name = "Basic Attack"
 description = "AAA"
+cost = 1
+category = "None"
 damage = 0
 heal = 0
 block = 0
+delay = 0
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
 
 [sub_resource type="Resource" id="Resource_d25nc"]
 script = ExtResource("10_u0g26")
 name = "StrongAttack"
 description = "BBB"
+cost = 1
+category = "None"
 damage = 0
 heal = 0
 block = 0
+delay = 0
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
 
 [node name="UI Rooot" type="Control"]
@@ -82,10 +89,16 @@ color = Color(0.10012, 0.0994528, 0.211891, 1)
 [node name="BattlefieldLogic" type="Node" parent="."]
 script = ExtResource("2_h40sh")
 
+[node name="EnemyLogic" type="Node" parent="BattlefieldLogic"]
+script = ExtResource("3_qvnly")
+
 [node name="Pendulum" parent="." instance=ExtResource("3_q4i1q")]
+unique_name_in_owner = true
 layout_mode = 1
 offset_top = 1.0
 offset_bottom = 129.0
+initial_mana = 10
+max_mana = 20
 
 [node name="ActionMenuButtons" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -160,7 +173,7 @@ metadata/_tab_index = 0
 [node name="Fight" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
 visible = false
 layout_mode = 2
-actions = Array[ExtResource("10_u0g26")]([SubResource("Resource_af52h"), SubResource("Resource_d25nc")])
+actions = [SubResource("Resource_af52h"), SubResource("Resource_d25nc")]
 metadata/_tab_index = 1
 
 [node name="TextureRect2" type="TextureRect" parent="ActionMenu/Fight"]
@@ -209,14 +222,25 @@ offset_bottom = 239.0
 texture = ExtResource("12_d25nc")
 metadata/_edit_group_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureButton" parent="Panel"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 4.0
 offset_right = 64.0
 offset_bottom = 64.0
-texture = ExtResource("13_qvnly")
+texture_normal = ExtResource("13_qvnly")
 
+[node name="Next" type="Button" parent="."]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 139.0
+offset_right = 298.0
+offset_bottom = 170.0
+text = "Next "
+
+[connection signal="enemy_action" from="BattlefieldLogic/EnemyLogic" to="BattlefieldLogic" method="enemy_action"]
+[connection signal="enemy_turn_ended" from="BattlefieldLogic/EnemyLogic" to="BattlefieldLogic" method="_on_enemy_turn_ended"]
 [connection signal="on_action_chosen" from="ActionMenu/Fight" to="BattlefieldLogic" method="player_action"]
 [connection signal="on_action_chosen" from="ActionMenu/Heal" to="BattlefieldLogic" method="player_action"]
 [connection signal="on_action_chosen" from="ActionMenu/Block" to="BattlefieldLogic" method="player_action"]
+[connection signal="pressed" from="Next" to="BattlefieldLogic" method="_on_next_pressed"]
