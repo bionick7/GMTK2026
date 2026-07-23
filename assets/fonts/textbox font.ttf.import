@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://he46g7605jrn"
-path="res://.godot/imported/textbox font.ttf-0752c3404eee6c0fedd9682e84eccdeb.fontdata"
+path="res://.godot/imported/textbox font.ttf-91cf2f69f7fd2ddb2dbe5e22bb6fc7aa.fontdata"
 
 [deps]
 
-source_file="res://assets/sprites/UI/font/textbox font.ttf"
-dest_files=["res://.godot/imported/textbox font.ttf-0752c3404eee6c0fedd9682e84eccdeb.fontdata"]
+source_file="res://assets/fonts/textbox font.ttf"
+dest_files=["res://.godot/imported/textbox font.ttf-91cf2f69f7fd2ddb2dbe5e22bb6fc7aa.fontdata"]
 
 [params]
 
