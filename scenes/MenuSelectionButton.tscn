@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://druj48twmbdm1"]
+
+[ext_resource type="Texture2D" uid="uid://b03uw4oqfhjch" path="res://assets/sprites/UI/FIGHT.png" id="1_17ma1"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_dmway"]
+device = -1
+keycode = 88
+unicode = 120
+
+[sub_resource type="Shortcut" id="Shortcut_lvn8x"]
+events = [SubResource("InputEventKey_dmway")]
+
+[node name="Fight" type="TextureButton"]
+shortcut = SubResource("Shortcut_lvn8x")
+texture_normal = ExtResource("1_17ma1")

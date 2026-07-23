@@ -1,14 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=25 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
 [ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
 [ext_resource type="PackedScene" uid="uid://cwdd7w25lcvgk" path="res://scenes/pendulum.tscn" id="3_q4i1q"]
-[ext_resource type="Texture2D" uid="uid://5n4ake1lwack" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
-[ext_resource type="Texture2D" uid="uid://bu2ni4crqxw51" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
-[ext_resource type="Texture2D" uid="uid://crlj18gmxejp8" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
+[ext_resource type="Texture2D" uid="uid://b03uw4oqfhjch" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
+[ext_resource type="Texture2D" uid="uid://4pogvk30a3yf" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
+[ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
 [ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
+[ext_resource type="Texture2D" uid="uid://camc06q4l0s8v" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
+[ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
+[ext_resource type="Texture2D" uid="uid://dnfc3s526nwut" path="res://assets/sprites/UI/Character portraits/Portrait_container.png" id="12_d25nc"]
+[ext_resource type="Texture2D" uid="uid://bxbmgqfcyrqu4" path="res://assets/sprites/UI/Character portraits/Default.png" id="13_qvnly"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_af52h"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvnly"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_dmway"]
 device = -1
@@ -36,16 +45,30 @@ events = [SubResource("InputEventKey_fswbb")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d25nc"]
 
+[sub_resource type="Resource" id="Resource_af52h"]
+script = ExtResource("10_u0g26")
+name = "Basic Attack"
+description = "AAA"
+damage = 0
+heal = 0
+block = 0
+metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
+
+[sub_resource type="Resource" id="Resource_d25nc"]
+script = ExtResource("10_u0g26")
+name = "StrongAttack"
+description = "BBB"
+damage = 0
+heal = 0
+block = 0
+metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
+
 [node name="UI Rooot" type="Control"]
+custom_minimum_size = Vector2(320, 240)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -500.0
-offset_bottom = -480.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_q4i1q")
+tab_button_group = SubResource("ButtonGroup_af52h")
 
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
@@ -72,44 +95,38 @@ anchor_bottom = 1.0
 offset_top = -31.0
 offset_right = 149.0
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qvnly")
 
 [node name="H" type="HBoxContainer" parent="ActionMenuButtons"]
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="Spacer" type="Control" parent="ActionMenuButtons/H"]
-custom_minimum_size = Vector2(21.435, 0)
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
 [node name="Fight" type="TextureButton" parent="ActionMenuButtons/H"]
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_af52h")
 shortcut = SubResource("Shortcut_lvn8x")
 texture_normal = ExtResource("4_ou7aw")
 
 [node name="Heal" type="TextureButton" parent="ActionMenuButtons/H"]
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_af52h")
 shortcut = SubResource("Shortcut_nkhet")
 texture_normal = ExtResource("5_o8pct")
 
 [node name="Block" type="TextureButton" parent="ActionMenuButtons/H"]
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_af52h")
 shortcut = SubResource("Shortcut_gm1nq")
 texture_normal = ExtResource("6_u0g26")
 
-[node name="ActionMenu" type="TabContainer" parent="."]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 91.0
-offset_right = 221.0
-offset_bottom = 241.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_d25nc")
-current_tab = 0
-tabs_visible = false
-
-[node name="Fight" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
-layout_mode = 2
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="PlayerHealth" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -121,8 +138,85 @@ offset_top = -116.0
 offset_right = 22.0
 grow_horizontal = 0
 grow_vertical = 0
-max_value = 10.0
-value = 7.0
+value = 37.0
 fill_mode = 3
 texture_under = ExtResource("7_af52h")
 texture_progress = ExtResource("8_d25nc")
+
+[node name="ActionMenu" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 86.0
+offset_right = 217.0
+offset_bottom = 195.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_d25nc")
+current_tab = 0
+tabs_visible = false
+
+[node name="Placeholder" type="Control" parent="ActionMenu"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Fight" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
+visible = false
+layout_mode = 2
+actions = Array[ExtResource("10_u0g26")]([SubResource("Resource_af52h"), SubResource("Resource_d25nc")])
+metadata/_tab_index = 1
+
+[node name="TextureRect2" type="TextureRect" parent="ActionMenu/Fight"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 112.0
+offset_right = 68.0
+offset_bottom = 152.0
+mouse_filter = 2
+texture = ExtResource("10_o8pct")
+
+[node name="Heal" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TextureRect2" type="TextureRect" parent="ActionMenu/Heal"]
+layout_mode = 2
+offset_left = 72.0
+offset_top = 112.0
+offset_right = 138.0
+offset_bottom = 152.0
+mouse_filter = 2
+texture = ExtResource("10_o8pct")
+
+[node name="Block" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="TextureRect2" type="TextureRect" parent="ActionMenu/Block"]
+layout_mode = 2
+offset_left = 142.0
+offset_top = 112.0
+offset_right = 208.0
+offset_bottom = 152.0
+mouse_filter = 2
+texture = ExtResource("10_o8pct")
+
+[node name="Panel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 173.0
+offset_right = 301.0
+offset_bottom = 239.0
+texture = ExtResource("12_d25nc")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("13_qvnly")
+
+[connection signal="on_action_chosen" from="ActionMenu/Fight" to="BattlefieldLogic" method="player_action"]
+[connection signal="on_action_chosen" from="ActionMenu/Heal" to="BattlefieldLogic" method="player_action"]
+[connection signal="on_action_chosen" from="ActionMenu/Block" to="BattlefieldLogic" method="player_action"]

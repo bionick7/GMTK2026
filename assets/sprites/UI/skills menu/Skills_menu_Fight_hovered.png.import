@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnxs4vupym80i"
-path="res://.godot/imported/Skills_menu_skill_cell_hovered.png-b418b17c04468918c2d65036406d497e.ctex"
+uid="uid://camc06q4l0s8v"
+path="res://.godot/imported/Skills_menu_Fight_hovered.png-31366c7e2b48a59c55057c85e12eff96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/skills menu/Skills_menu_skill_cell_hovered.png"
-dest_files=["res://.godot/imported/Skills_menu_skill_cell_hovered.png-b418b17c04468918c2d65036406d497e.ctex"]
+source_file="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png"
+dest_files=["res://.godot/imported/Skills_menu_Fight_hovered.png-31366c7e2b48a59c55057c85e12eff96.ctex"]
 
 [params]
 

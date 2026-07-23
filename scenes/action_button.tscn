@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgo5nycikcghp"]
+
+[ext_resource type="Texture2D" uid="uid://cn0i7j74ww5el" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_cell.png" id="1_u7r83"]
+[ext_resource type="Texture2D" uid="uid://bnxs4vupym80i" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_cell_hovered.png" id="2_ffiw1"]
+[ext_resource type="Script" uid="uid://qaqdnchp0kee" path="res://scenes/action_button.gd" id="3_ffiw1"]
+
+[node name="ActionButton" type="TextureButton"]
+texture_normal = ExtResource("1_u7r83")
+texture_hover = ExtResource("2_ffiw1")
+script = ExtResource("3_ffiw1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "AVSD"
