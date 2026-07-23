@@ -1,0 +1,128 @@
+[gd_scene load_steps=17 format=3 uid="uid://fqb81nia2a3r"]
+
+[ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
+[ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
+[ext_resource type="PackedScene" uid="uid://cwdd7w25lcvgk" path="res://scenes/pendulum.tscn" id="3_q4i1q"]
+[ext_resource type="Texture2D" uid="uid://5n4ake1lwack" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
+[ext_resource type="Texture2D" uid="uid://bu2ni4crqxw51" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
+[ext_resource type="Texture2D" uid="uid://crlj18gmxejp8" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
+[ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
+[ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
+[ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_dmway"]
+device = -1
+keycode = 88
+unicode = 120
+
+[sub_resource type="Shortcut" id="Shortcut_lvn8x"]
+events = [SubResource("InputEventKey_dmway")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_42imw"]
+device = -1
+keycode = 72
+unicode = 104
+
+[sub_resource type="Shortcut" id="Shortcut_nkhet"]
+events = [SubResource("InputEventKey_42imw")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_fswbb"]
+device = -1
+keycode = 79
+unicode = 111
+
+[sub_resource type="Shortcut" id="Shortcut_gm1nq"]
+events = [SubResource("InputEventKey_fswbb")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d25nc"]
+
+[node name="UI Rooot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -500.0
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q4i1q")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10012, 0.0994528, 0.211891, 1)
+
+[node name="BattlefieldLogic" type="Node" parent="."]
+script = ExtResource("2_h40sh")
+
+[node name="Pendulum" parent="." instance=ExtResource("3_q4i1q")]
+layout_mode = 1
+offset_top = 1.0
+offset_bottom = 129.0
+
+[node name="ActionMenuButtons" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 149.0
+grow_vertical = 0
+
+[node name="H" type="HBoxContainer" parent="ActionMenuButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Spacer" type="Control" parent="ActionMenuButtons/H"]
+custom_minimum_size = Vector2(21.435, 0)
+layout_mode = 2
+
+[node name="Fight" type="TextureButton" parent="ActionMenuButtons/H"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_lvn8x")
+texture_normal = ExtResource("4_ou7aw")
+
+[node name="Heal" type="TextureButton" parent="ActionMenuButtons/H"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_nkhet")
+texture_normal = ExtResource("5_o8pct")
+
+[node name="Block" type="TextureButton" parent="ActionMenuButtons/H"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_gm1nq")
+texture_normal = ExtResource("6_u0g26")
+
+[node name="ActionMenu" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 91.0
+offset_right = 221.0
+offset_bottom = 241.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_d25nc")
+current_tab = 0
+tabs_visible = false
+
+[node name="Fight" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -116.0
+offset_right = 22.0
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 10.0
+value = 7.0
+fill_mode = 3
+texture_under = ExtResource("7_af52h")
+texture_progress = ExtResource("8_d25nc")

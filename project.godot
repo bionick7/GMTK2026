@@ -11,9 +11,22 @@ config_version=5
 [application]
 
 config/name="GMTK2026"
+run/main_scene="uid://fqb81nia2a3r"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/sprites/icon.svg"
+
+[display]
+
+window/size/viewport_width=860
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/scale=3.0
+window/stretch/scale_mode="integer"
 
 [dotnet]
 
 project/assembly_name="GMTK2026"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
