@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=27 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
 [ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
 [ext_resource type="PackedScene" uid="uid://cwdd7w25lcvgk" path="res://scenes/pendulum.tscn" id="3_q4i1q"]
 [ext_resource type="Script" uid="uid://cs2rfgqjdyxah" path="res://scenes/enemy_logic.gd" id="3_qvnly"]
 [ext_resource type="Texture2D" uid="uid://b03uw4oqfhjch" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
+[ext_resource type="Texture2D" uid="uid://bdtg0x7r5xpgd" path="res://assets/sprites/UI/Icon_container_and_Dialogue_box.png" id="5_dmway"]
 [ext_resource type="Texture2D" uid="uid://4pogvk30a3yf" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
 [ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
@@ -105,14 +106,18 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
-offset_right = 149.0
+offset_top = -49.0
+offset_right = 254.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qvnly")
 
+[node name="IconContainerAndDialogueBox" type="Sprite2D" parent="ActionMenuButtons"]
+position = Vector2(128, 24)
+texture = ExtResource("5_dmway")
+
 [node name="H" type="HBoxContainer" parent="ActionMenuButtons"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="Spacer" type="Control" parent="ActionMenuButtons/H"]
 custom_minimum_size = Vector2(10, 0)
@@ -125,12 +130,20 @@ button_group = SubResource("ButtonGroup_af52h")
 shortcut = SubResource("Shortcut_lvn8x")
 texture_normal = ExtResource("4_ou7aw")
 
+[node name="Spacer2" type="Control" parent="ActionMenuButtons/H"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
 [node name="Heal" type="TextureButton" parent="ActionMenuButtons/H"]
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_af52h")
 shortcut = SubResource("Shortcut_nkhet")
 texture_normal = ExtResource("5_o8pct")
+
+[node name="Spacer3" type="Control" parent="ActionMenuButtons/H"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="Block" type="TextureButton" parent="ActionMenuButtons/H"]
 layout_mode = 2
@@ -147,8 +160,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -18.0
-offset_top = -116.0
+offset_top = -182.0
 offset_right = 22.0
+offset_bottom = -66.0
 grow_horizontal = 0
 grow_vertical = 0
 value = 37.0
@@ -158,15 +172,16 @@ texture_progress = ExtResource("8_d25nc")
 
 [node name="ActionMenu" type="TabContainer" parent="."]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 86.0
-offset_right = 217.0
-offset_bottom = 195.0
+offset_left = 1.0
+offset_top = 78.0
+offset_right = 257.0
+offset_bottom = 192.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_d25nc")
-current_tab = 0
+current_tab = 3
 tabs_visible = false
 
 [node name="Placeholder" type="Control" parent="ActionMenu"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -178,9 +193,9 @@ metadata/_tab_index = 1
 
 [node name="TextureRect2" type="TextureRect" parent="ActionMenu/Fight"]
 layout_mode = 2
-offset_left = 2.0
+offset_left = 13.0
 offset_top = 112.0
-offset_right = 68.0
+offset_right = 79.0
 offset_bottom = 152.0
 mouse_filter = 2
 texture = ExtResource("10_o8pct")
@@ -192,32 +207,31 @@ metadata/_tab_index = 2
 
 [node name="TextureRect2" type="TextureRect" parent="ActionMenu/Heal"]
 layout_mode = 2
-offset_left = 72.0
+offset_left = 97.0
 offset_top = 112.0
-offset_right = 138.0
+offset_right = 163.0
 offset_bottom = 152.0
 mouse_filter = 2
 texture = ExtResource("10_o8pct")
 
 [node name="Block" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
 [node name="TextureRect2" type="TextureRect" parent="ActionMenu/Block"]
 layout_mode = 2
-offset_left = 142.0
+offset_left = 181.0
 offset_top = 112.0
-offset_right = 208.0
+offset_right = 247.0
 offset_bottom = 152.0
 mouse_filter = 2
 texture = ExtResource("10_o8pct")
 
 [node name="Panel" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 235.0
+offset_left = 254.0
 offset_top = 173.0
-offset_right = 301.0
+offset_right = 320.0
 offset_bottom = 239.0
 texture = ExtResource("12_d25nc")
 metadata/_edit_group_ = true
