@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://bayvjykx6ywsb"]
+
+[ext_resource type="Texture2D" uid="uid://bxbmgqfcyrqu4" path="res://assets/sprites/UI/Character portraits/Default.png" id="1_v8g6w"]
+[ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_yrrp7"]
+
+[resource]
+script = ExtResource("2_yrrp7")
+enemy_name = "wizard"
+description = "NOT YET USED"
+icon = ExtResource("1_v8g6w")
+hp = 100

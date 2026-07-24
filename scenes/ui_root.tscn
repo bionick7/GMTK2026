@@ -97,7 +97,7 @@ resource_local_to_scene = true
 atlas = ExtResource("6_gm1nq")
 region = Rect2(0, 0, 32, 32)
 
-[node name="UI Rooot" type="Control"]
+[node name="UIRooot" type="Control"]
 custom_minimum_size = Vector2(320, 240)
 layout_mode = 3
 anchors_preset = 0
@@ -113,7 +113,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.10012, 0.0994528, 0.211891, 1)
 
-[node name="Pendulum" parent="." instance=ExtResource("3_q4i1q")]
+[node name="Pendulum" parent="." groups=["Pendulum"] instance=ExtResource("3_q4i1q")]
 unique_name_in_owner = true
 layout_mode = 1
 offset_top = 1.0
@@ -130,7 +130,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3_lvn8x")
 
-[node name="Sprite2D" type="Sprite2D" parent="BattlefieldLogic/Enemy"]
+[node name="Sprite" type="Sprite2D" parent="BattlefieldLogic/Enemy"]
 position = Vector2(160, 119)
 scale = Vector2(0.609375, 0.609375)
 texture = ExtResource("5_nkhet")

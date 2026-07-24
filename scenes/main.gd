@@ -10,11 +10,17 @@ var menu_buttons : Array[BaseButton] = [
 	$ActionMenuButtons/H/Block,
 ]
 
+signal round_finished(player_won: bool)
+
 func _ready() -> void:
 	tab_button_group.pressed.connect(_on_action_tab_changed)
-
-func  _process(delta: float) -> void:
-	pass
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_sepuku"):
+		round_finished.emit(false)
+	
+func setup(enemy_type: String) -> void:
+	$BattlefieldLogic/Enemy.set_enemy_type(enemy_type)
 	
 func _on_action_tab_changed(x: BaseButton):
 	for i in range(len(menu_buttons)):
@@ -24,7 +30,7 @@ func _on_action_tab_changed(x: BaseButton):
 	$ActionMenu.current_tab = 0
 
 func _on_player_die() -> void:
-	pass # Replace with function body.
+	round_finished.emit(true)
 
 func _on_enemy_die() -> void:
-	pass # Replace with function body.
+	round_finished.emit(false)

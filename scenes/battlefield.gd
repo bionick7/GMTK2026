@@ -1,9 +1,6 @@
 class_name BattlefieldLogic
 extends Node
 
-static var singleton: BattlefieldLogic = null
-
-const SKILLS_DATA := "res://mechanics_resources/GMTK 2026 ideas - Skills.txt"
 
 enum TurnState {
 	BLOCKED,
@@ -22,14 +19,9 @@ var turn_fsm: TurnState = TurnState.BLOCKED
 var safe_state_track := []
 
 func _ready() -> void:
-	if is_instance_valid(singleton):
-		queue_free()
-	else:
-		singleton = self
-	var actions := _read_actions_from_file(SKILLS_DATA)
-	$"../ActionMenu/Fight".actions = actions["Fight"]
-	$"../ActionMenu/Heal".actions = actions["Heal"]
-	$"../ActionMenu/Block".actions = actions["Block"]
+	$"../ActionMenu/Fight".actions = DataManager.player_actions["Fight"]
+	$"../ActionMenu/Heal".actions = DataManager.player_actions["Heal"]
+	$"../ActionMenu/Block".actions = DataManager.player_actions["Block"]
 	
 	turn_fsm = TurnState.AWAITING_PLAYER_INPUT
 	safe_state_track.append(get_gamestate())
@@ -85,28 +77,6 @@ func set_gamestate(data: Dictionary) -> void:
 		entity.block = data[path].block
 		entity.delay = data[path].delay
 
-func _read_actions_from_file(filepath: String) -> Dictionary[String, Array]:
-	var res: Dictionary[String, Array] = {
-		"Fight": [],
-		"Heal": [],
-		"Block": [],
-		"None": [],
-	}
-	var file := FileAccess.open(filepath, FileAccess.READ)
-	var header := file.get_csv_line()
-	while not file.eof_reached():
-		var row := file.get_csv_line()
-		if len(row) <= 1:
-			continue
-		var action_dict: Dictionary[String, Variant]= {}
-		for i in range(min(len(header), len(row))):
-			if row[i] != "" and row[i] != "-":
-				action_dict[header[i]] = row[i]
-		var action = ActionResource.from_dict(action_dict)
-		print("Loaded ", action_dict)
-		res[action.category].append(action)
-	file.close()
-	return res
 
 func _on_next_pressed() -> void:
 	if turn_fsm == TurnState.AWAITING_PLAYER_INPUT:

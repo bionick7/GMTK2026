@@ -1,19 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7cws5852gv2h"]
+[gd_scene load_steps=6 format=3 uid="uid://b7cws5852gv2h"]
 
 [ext_resource type="PackedScene" uid="uid://fqb81nia2a3r" path="res://scenes/ui_root.tscn" id="1_4bcw6"]
+[ext_resource type="Script" uid="uid://dtvfcycbwm4de" path="res://scenes/progress_monitor.gd" id="1_cufgd"]
+[ext_resource type="PackedScene" uid="uid://bvx0mqut0w828" path="res://scenes/EnemyChoice.tscn" id="3_daa6r"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_cufgd"]
 allow_unpress = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kl6q"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.10161, 0.0977035, 0.211521, 1)
+
 [node name="ProgressMonitor" type="Control"]
 layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 240.0
+script = ExtResource("1_cufgd")
+
+[node name="UIRooot" parent="." instance=ExtResource("1_4bcw6")]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -640.0
-offset_bottom = -480.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="UI Rooot" parent="." instance=ExtResource("1_4bcw6")]
 tab_button_group = SubResource("ButtonGroup_cufgd")
+
+[node name="Choice" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kl6q")
+
+[node name="V" type="HBoxContainer" parent="Choice"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="A" parent="Choice/V" instance=ExtResource("3_daa6r")]
+layout_mode = 2
+
+[node name="B" parent="Choice/V" instance=ExtResource("3_daa6r")]
+layout_mode = 2
+
+[connection signal="round_finished" from="UIRooot" to="." method="_on_ui_rooot_round_finished"]
+[connection signal="pressed" from="Choice/V/A" to="." method="_on_a_pressed"]
+[connection signal="pressed" from="Choice/V/B" to="." method="_on_b_pressed"]
