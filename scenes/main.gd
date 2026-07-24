@@ -22,3 +22,9 @@ func _on_action_tab_changed(x: BaseButton):
 			$ActionMenu.current_tab = i + 1
 			return
 	$ActionMenu.current_tab = 0
+
+func _on_player_die() -> void:
+	pass # Replace with function body.
+
+func _on_enemy_die() -> void:
+	pass # Replace with function body.

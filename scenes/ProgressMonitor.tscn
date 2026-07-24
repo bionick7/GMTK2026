@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7cws5852gv2h"]
+
+[ext_resource type="PackedScene" uid="uid://fqb81nia2a3r" path="res://scenes/ui_root.tscn" id="1_4bcw6"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_cufgd"]
+allow_unpress = true
+
+[node name="ProgressMonitor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI Rooot" parent="." instance=ExtResource("1_4bcw6")]
+tab_button_group = SubResource("ButtonGroup_cufgd")

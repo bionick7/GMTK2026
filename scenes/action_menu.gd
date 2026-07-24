@@ -19,7 +19,7 @@ var ui_action_offset := 0
 	$V/ActionButton3,
 ]
 
-signal on_action_chosen(action: ActionResource)
+signal on_action_chosen(action: ActionResource, target: Enemy)
 
 func _ready() -> void:
 	_update_action_buttons()
@@ -34,7 +34,9 @@ func _update_action_buttons() -> void:
 		action_buttons[button_idx].set_resource(actions[action_idx])
 
 func _on_action_selected(action: ActionResource) -> void:
-	on_action_chosen.emit(action)
+	# Assume for now that there is only one enemy
+	var enemy: Enemy = get_tree().get_nodes_in_group("Enemies")[0]
+	on_action_chosen.emit(action, enemy)
 
 func _on_action_hover_in(action: ActionResource) -> void:
 	hover_action = action

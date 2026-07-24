@@ -1,0 +1,20 @@
+SKILL,DESCRIPTION,COST,DAMAGE,HEALTH,BLOCK,DELAY,DURATION,CATEGORY
+Icicle,small damage,1,7,-,-,-,-,Fight
+Ice Chunk,medium damage,3,35,-,-,-,-,Fight
+Ice Storm,big damage. skips 1 turn for the player,6,120,-,-,-1,-,Fight
+Freeze,delays target turn by 1,2,-,-,-,1,-,Block
+Mega Frost,delays target turn by 2,7,-,-,-,2,,Block
+Ice Floor,damages target every turn if they attack,8,35,-,-,-,2,Block
+Blood Frost,damages target every turn if they heal ,10,-,-,-,-,2,Block
+Quickification,enemy moves are reactable. makes attacks miss the user,10,-,-,999,-,2,Heal
+Schauer,removes the ability to block,12,-,-,-,-,2,Block
+Snow Ball,"small damage with a chance to inflict ""slow""",12,10,-,-,1,2,Block
+Snow Cloud,mana cost is doubled for target,15,-,-,-,-,2,Block
+Clone,"makes a clone of the user that repeats the same actions (double damage, heal, block value)",15,-,-,-,-,3,Fight
+Avalanche,"Big damage for target. damages user. inflicts ""slow"" on everyone",17,200,-35,-,2,3,Fight
+Ice Rain,damages target every turn (carries on between battles),17,,,,,,Fight
+Snow Grave,big fucking damage. kills target instantly (if the player is the target then it takes 3/4 of their current health). delays user turn by 2,20,999,-75%,,,,Fight
+Private Square,allows the user to act twice in a single turn (carries on between targets),20,,,,,,Heal
+The World,allows the user to use any 5 actions for free for 1 turn,20,,,,,,Heal
+Armageddon,instant nuke and kills everyone. has a unique ending screen,20,,,,,,Fight
+Maki Modoshi,rewind X amount of turns,???(may be a consumable),,,,,,Block

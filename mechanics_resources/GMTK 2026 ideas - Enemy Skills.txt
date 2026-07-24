@@ -1,0 +1,11 @@
+SKILL,DESCRIPTION,COST,DAMAGE,HEALTH,BLOCK,DELAY,DURATION,WHO
+Dagger,small damage,1,5,-,-,-,-,imp;wizard
+Large attack,medium damage,3,20,-,-,-,-,bear;turtle
+Heavy attack,big damage. skips 1 turn,6,50,-,-,-1,-,turtle
+Light block,,1,,,5,,,imp;wizard
+Heavy blcok,,3,,,20,,,bear
+Full block,,9,,,100,,,turtle
+Mana minimum,Player cannot use less than 10 mana (should only be played if player can play without overstepping),5,,,,,,wizard
+Mana Maximum,Player cannot use more thatn 5 mana next turn,5,,,,,,wizard
+Basic delay,Delays the player,,,,,1,,
+Buff,"Doubles next attack, damages self",5,,10,,,,bear

@@ -19,7 +19,6 @@ func _ready() -> void:
 	min_value = 0
 	max_value = max_mana
 	value = initial_mana
-	prints(value, initial_mana)
 
 func use_player_mana(x: int) -> void:
 	value -= x

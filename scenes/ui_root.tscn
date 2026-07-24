@@ -1,23 +1,44 @@
-[gd_scene load_steps=27 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=38 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
 [ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
+[ext_resource type="Script" uid="uid://cld6b7vy8o42b" path="res://scenes/enemy.gd" id="3_lvn8x"]
 [ext_resource type="PackedScene" uid="uid://cwdd7w25lcvgk" path="res://scenes/pendulum.tscn" id="3_q4i1q"]
-[ext_resource type="Script" uid="uid://cs2rfgqjdyxah" path="res://scenes/enemy_logic.gd" id="3_qvnly"]
+[ext_resource type="Script" uid="uid://b0fvh4i6r3nxb" path="res://scenes/player.gd" id="4_lvn8x"]
 [ext_resource type="Texture2D" uid="uid://b03uw4oqfhjch" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
 [ext_resource type="Texture2D" uid="uid://bdtg0x7r5xpgd" path="res://assets/sprites/UI/Icon_container_and_Dialogue_box.png" id="5_dmway"]
+[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="5_nkhet"]
 [ext_resource type="Texture2D" uid="uid://4pogvk30a3yf" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
+[ext_resource type="Texture2D" uid="uid://dulro07ka11fa" path="res://assets/sprites/Atlases/Clock.png" id="6_gm1nq"]
 [ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
 [ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
+[ext_resource type="Script" uid="uid://cw24ue5yd58ld" path="res://scenes/turn_clock.gd" id="7_q1h1b"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
 [ext_resource type="Texture2D" uid="uid://bkmgu1ya50lti" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
 [ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
+[ext_resource type="Script" uid="uid://0yhkihpp2f76" path="res://scenes/healthbar.gd" id="12_42imw"]
 [ext_resource type="Texture2D" uid="uid://dnfc3s526nwut" path="res://assets/sprites/UI/Character portraits/Portrait_container.png" id="12_d25nc"]
 [ext_resource type="Texture2D" uid="uid://bxbmgqfcyrqu4" path="res://assets/sprites/UI/Character portraits/Default.png" id="13_qvnly"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_af52h"]
 allow_unpress = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fswbb"]
+bg_color = Color(0.486076, 0.246693, 0.344884, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkhet"]
+bg_color = Color(0.246693, 0.674632, 0.584268, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fswbb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm1nq"]
+bg_color = Color(0.545174, 0.898375, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm1nq"]
+resource_local_to_scene = true
+atlas = ExtResource("6_gm1nq")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvnly"]
 
@@ -71,6 +92,11 @@ block = 0
 delay = 0
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_07w1x"]
+resource_local_to_scene = true
+atlas = ExtResource("6_gm1nq")
+region = Rect2(0, 0, 32, 32)
+
 [node name="UI Rooot" type="Control"]
 custom_minimum_size = Vector2(320, 240)
 layout_mode = 3
@@ -87,12 +113,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.10012, 0.0994528, 0.211891, 1)
 
-[node name="BattlefieldLogic" type="Node" parent="."]
-script = ExtResource("2_h40sh")
-
-[node name="EnemyLogic" type="Node" parent="BattlefieldLogic"]
-script = ExtResource("3_qvnly")
-
 [node name="Pendulum" parent="." instance=ExtResource("3_q4i1q")]
 unique_name_in_owner = true
 layout_mode = 1
@@ -100,6 +120,55 @@ offset_top = 1.0
 offset_bottom = 129.0
 initial_mana = 10
 max_mana = 20
+
+[node name="BattlefieldLogic" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("2_h40sh")
+
+[node name="Enemy" type="Control" parent="BattlefieldLogic" groups=["Enemies"]]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_lvn8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="BattlefieldLogic/Enemy"]
+position = Vector2(160, 119)
+scale = Vector2(0.609375, 0.609375)
+texture = ExtResource("5_nkhet")
+
+[node name="ProgressBar" type="ProgressBar" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("target")]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 63.0
+offset_right = 207.0
+offset_bottom = 77.0
+theme_override_styles/background = SubResource("StyleBoxFlat_fswbb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nkhet")
+value = 27.69
+show_percentage = false
+script = ExtResource("12_42imw")
+target = NodePath("..")
+
+[node name="Shield" type="ProgressBar" parent="BattlefieldLogic/Enemy/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_fswbb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gm1nq")
+value = 10.49
+show_percentage = false
+
+[node name="Clock" type="Sprite2D" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("entity")]
+position = Vector2(203, 83)
+texture = SubResource("AtlasTexture_gm1nq")
+script = ExtResource("7_q1h1b")
+entity = NodePath("..")
+
+[node name="Player" type="Node" parent="BattlefieldLogic"]
+unique_name_in_owner = true
+script = ExtResource("4_lvn8x")
 
 [node name="ActionMenuButtons" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -111,8 +180,8 @@ offset_right = 254.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qvnly")
 
-[node name="IconContainerAndDialogueBox" type="Sprite2D" parent="ActionMenuButtons"]
-position = Vector2(128, 24)
+[node name="IconContainerAndDialogueBox" type="TextureRect" parent="ActionMenuButtons"]
+layout_mode = 2
 texture = ExtResource("5_dmway")
 
 [node name="H" type="HBoxContainer" parent="ActionMenuButtons"]
@@ -152,24 +221,6 @@ button_group = SubResource("ButtonGroup_af52h")
 shortcut = SubResource("Shortcut_gm1nq")
 texture_normal = ExtResource("6_u0g26")
 
-[node name="PlayerHealth" type="TextureProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -18.0
-offset_top = -182.0
-offset_right = 22.0
-offset_bottom = -66.0
-grow_horizontal = 0
-grow_vertical = 0
-value = 37.0
-fill_mode = 3
-texture_under = ExtResource("7_af52h")
-texture_progress = ExtResource("8_d25nc")
-
 [node name="ActionMenu" type="TabContainer" parent="."]
 layout_mode = 0
 offset_left = 1.0
@@ -177,11 +228,10 @@ offset_top = 78.0
 offset_right = 257.0
 offset_bottom = 192.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_d25nc")
-current_tab = 3
+current_tab = 0
 tabs_visible = false
 
 [node name="Placeholder" type="Control" parent="ActionMenu"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -215,6 +265,7 @@ mouse_filter = 2
 texture = ExtResource("10_o8pct")
 
 [node name="Block" parent="ActionMenu" instance=ExtResource("7_ou7aw")]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -236,15 +287,54 @@ offset_bottom = 239.0
 texture = ExtResource("12_d25nc")
 metadata/_edit_group_ = true
 
-[node name="TextureRect" type="TextureButton" parent="Panel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 64.0
-offset_bottom = 64.0
-texture_normal = ExtResource("13_qvnly")
+[node name="PlayerHealth" type="TextureProgressBar" parent="Panel" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -181.0
+offset_right = 22.0
+offset_bottom = -65.0
+grow_horizontal = 0
+grow_vertical = 0
+value = 37.0
+fill_mode = 3
+texture_under = ExtResource("7_af52h")
+texture_progress = ExtResource("8_d25nc")
+script = ExtResource("12_42imw")
+target = NodePath("../../BattlefieldLogic/Player")
+
+[node name="Shield" type="ProgressBar" parent="Panel/PlayerHealth"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = -22.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_fswbb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gm1nq")
+value = 10.49
+fill_mode = 3
+show_percentage = false
+
+[node name="Clock" type="Sprite2D" parent="Panel" node_paths=PackedStringArray("entity")]
+position = Vector2(3, 0)
+texture = SubResource("AtlasTexture_07w1x")
+script = ExtResource("7_q1h1b")
+entity = NodePath("../../BattlefieldLogic/Player")
+
+[node name="TextureRect" type="Sprite2D" parent="Panel"]
+position = Vector2(35, 33)
+texture = ExtResource("13_qvnly")
 
 [node name="Next" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 239.0
 offset_top = 139.0
@@ -252,8 +342,10 @@ offset_right = 298.0
 offset_bottom = 170.0
 text = "Next "
 
-[connection signal="enemy_action" from="BattlefieldLogic/EnemyLogic" to="BattlefieldLogic" method="enemy_action"]
-[connection signal="enemy_turn_ended" from="BattlefieldLogic/EnemyLogic" to="BattlefieldLogic" method="_on_enemy_turn_ended"]
+[connection signal="die" from="BattlefieldLogic/Enemy" to="." method="_on_enemy_die"]
+[connection signal="enemy_action" from="BattlefieldLogic/Enemy" to="BattlefieldLogic" method="enemy_action"]
+[connection signal="enemy_turn_ended" from="BattlefieldLogic/Enemy" to="BattlefieldLogic" method="_on_enemy_turn_ended"]
+[connection signal="die" from="BattlefieldLogic/Player" to="." method="_on_player_die"]
 [connection signal="on_action_chosen" from="ActionMenu/Fight" to="BattlefieldLogic" method="player_action"]
 [connection signal="on_action_chosen" from="ActionMenu/Heal" to="BattlefieldLogic" method="player_action"]
 [connection signal="on_action_chosen" from="ActionMenu/Block" to="BattlefieldLogic" method="player_action"]

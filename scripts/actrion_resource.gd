@@ -18,10 +18,10 @@ var description := ""
 static func from_dict(data: Dictionary[String, Variant]) -> ActionResource:
 	var res := ActionResource.new()
 	res.name = data["SKILL"]
-	res.description = data["DESCRIPTION"]
+	res.description = data.get("DESCRIPTION", "")
 	res.category = data.get("CATEGORY", "None")
-	res.cost = data["COST"]
-	res.damage = data.get("DAMMAGE", 0)
+	res.cost = data.get("COST", 0)
+	res.damage = data.get("DAMAGE", 0)
 	res.heal = data.get("HEALTH", 0)
 	res.block = data.get("BLOCK", 0)
 	res.delay = data.get("DELAY", 0)
