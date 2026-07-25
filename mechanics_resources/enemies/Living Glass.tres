@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://v0uysydxj4pr"]
+
+[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_or54y"]
+[ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_3wewd"]
+
+[resource]
+script = ExtResource("2_3wewd")
+enemy_name = "Old Doll"
+description = "a broken doll being animated by strings against her will"
+icon = ExtResource("1_or54y")
+hp = 300

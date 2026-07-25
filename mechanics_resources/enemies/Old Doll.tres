@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://gfwjqycsalvm"]
+
+[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_qpgs3"]
+[ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_tqudx"]
+
+[resource]
+script = ExtResource("2_tqudx")
+enemy_name = "Mossatuar"
+description = "Bulky, mossy and ferocious"
+icon = ExtResource("1_qpgs3")
+hp = 300

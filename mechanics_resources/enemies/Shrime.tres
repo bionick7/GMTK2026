@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://dhxwicc1m7w0x"]
+
+[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_cwmen"]
+[ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_mg2ta"]
+
+[resource]
+script = ExtResource("2_mg2ta")
+enemy_name = "Shrime"
+description = "a slime made of mushrooms. maybe a mushroom made of slime?
+
+"
+icon = ExtResource("1_cwmen")
+hp = 90

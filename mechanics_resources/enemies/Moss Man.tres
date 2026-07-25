@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://cv0ehkpa5p24i"]
+
+[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_jxnfp"]
+[ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_u2pt7"]
+
+[resource]
+script = ExtResource("2_u2pt7")
+enemy_name = "Moss Man"
+description = "Moss Man"
+icon = ExtResource("1_jxnfp")
+hp = 500
