@@ -2,9 +2,9 @@ class_name EnemyPlayerBase
 extends Node
 
 @export var max_hp: int = 100
+@export var block := 0
+@export var delay := 0
 
-var block := 0
-var delay := 0
 @onready var hp := max_hp
 
 signal die

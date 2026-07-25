@@ -25,6 +25,7 @@ func _ready() -> void:
 	
 	turn_fsm = TurnState.AWAITING_PLAYER_INPUT
 	safe_state_track.append(get_gamestate())
+	_on_enemy_turn_ended()
 	
 func player_action(action: ActionResource, target: Enemy) -> void:
 	$"../ActionMenu".current_tab = 0
@@ -77,7 +78,6 @@ func set_gamestate(data: Dictionary) -> void:
 		entity.block = data[path].block
 		entity.delay = data[path].delay
 
-
 func _on_next_pressed() -> void:
 	if turn_fsm == TurnState.AWAITING_PLAYER_INPUT:
 		turn_fsm = TurnState.ENEMY_TURN_ANIMATION
@@ -86,4 +86,8 @@ func _on_next_pressed() -> void:
 			await enemy.enemy_turn_ended
 	
 func _on_enemy_turn_ended() -> void:
+	if player.delay > 0:
+		turn_fsm = TurnState.PLAYER_TURN_ANIMATION
+		await get_tree().create_timer(0.5).timeout
+		player.tick_delay()
 	turn_fsm = TurnState.AWAITING_PLAYER_INPUT

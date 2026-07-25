@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cl68cr2iqa15u"]
+
+[ext_resource type="FontFile" uid="uid://jcsg5f74m1ic" path="res://assets/fonts/m5x7.ttf" id="1_cag7l"]
+
+[resource]
+font = ExtResource("1_cag7l")
+font_color = Color(1, 0.964706, 0.827451, 1)

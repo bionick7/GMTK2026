@@ -28,6 +28,17 @@ func _ready() -> void:
 		action_button.action_hover_out.connect(_on_action_hover_out)
 		action_button.action_selected.connect(_on_action_selected)
 
+func get_bbcode_action_display(action: ActionResource) -> String:
+	var txt := ""
+	if action.damage != 0:
+		txt += "[img]res://assets/sprites/Atlases/attack_icon.tres[/img] [color=#eb6b6f]%d[/color] " % action.damage
+	if action.heal != 0:
+		txt += "[img]res://assets/sprites/Atlases/heal_icon.tres[/img] [color=#3fac95]%d[/color] " % action.heal
+	if action.delay != 0:
+		txt += "[img]res://assets/sprites/Atlases/delay_icon.tres[/img] [color=#f9a875]%d[/color] " % action.delay
+	txt += "\n" + action.description
+	return txt
+
 func _update_action_buttons() -> void:
 	for button_idx in range(len(action_buttons)):
 		var action_idx := (button_idx + ui_action_offset) % len(actions)
@@ -40,7 +51,7 @@ func _on_action_selected(action: ActionResource) -> void:
 
 func _on_action_hover_in(action: ActionResource) -> void:
 	hover_action = action
-	description_text.text = action.description
+	description_text.text = get_bbcode_action_display(action)
 	description.show()
 	
 func _on_action_hover_out(action: ActionResource) -> void:

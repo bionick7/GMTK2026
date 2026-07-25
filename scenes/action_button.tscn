@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgo5nycikcghp"]
+[gd_scene load_steps=5 format=3 uid="uid://cgo5nycikcghp"]
 
 [ext_resource type="Texture2D" uid="uid://cn0i7j74ww5el" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_cell.png" id="1_u7r83"]
 [ext_resource type="Texture2D" uid="uid://bnxs4vupym80i" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_cell_hovered.png" id="2_ffiw1"]
 [ext_resource type="Script" uid="uid://qaqdnchp0kee" path="res://scenes/action_button.gd" id="3_ffiw1"]
-[ext_resource type="FontFile" uid="uid://jcsg5f74m1ic" path="res://assets/fonts/m5x7.ttf" id="4_wn2sm"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_smqkt"]
-font = ExtResource("4_wn2sm")
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="LabelSettings" uid="uid://cl68cr2iqa15u" path="res://assets/default_label_settings.tres" id="4_wn2sm"]
 
 [node name="ActionButton" type="TextureButton"]
 texture_normal = ExtResource("1_u7r83")
@@ -21,7 +17,7 @@ offset_top = 2.0
 offset_right = 17.0
 offset_bottom = 15.0
 text = "10"
-label_settings = SubResource("LabelSettings_smqkt")
+label_settings = ExtResource("4_wn2sm")
 vertical_alignment = 1
 
 [node name="NameLabel" type="Label" parent="."]
@@ -31,7 +27,7 @@ offset_top = 2.0
 offset_right = 103.0
 offset_bottom = 15.0
 text = "Private Square"
-label_settings = SubResource("LabelSettings_smqkt")
+label_settings = ExtResource("4_wn2sm")
 vertical_alignment = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -31,6 +31,8 @@ func _on_action_tab_changed(x: BaseButton):
 
 func _on_player_die() -> void:
 	round_finished.emit(true)
+	print("Player died")
 
 func _on_enemy_die() -> void:
 	round_finished.emit(false)
+	print("Enemy died")

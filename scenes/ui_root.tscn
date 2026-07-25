@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=40 format=3 uid="uid://fqb81nia2a3r"]
 
+[ext_resource type="Theme" uid="uid://snchaitq3fef" path="res://assets/main_ui.tres" id="1_q1h1b"]
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
 [ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
 [ext_resource type="Script" uid="uid://cld6b7vy8o42b" path="res://scenes/enemy.gd" id="3_lvn8x"]
@@ -92,6 +93,9 @@ block = 0
 delay = 0
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
 
+[sub_resource type="LabelSettings" id="LabelSettings_q1h1b"]
+font_color = Color(0.246693, 0.674632, 0.584268, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_07w1x"]
 resource_local_to_scene = true
 atlas = ExtResource("6_gm1nq")
@@ -101,6 +105,7 @@ region = Rect2(0, 0, 32, 32)
 custom_minimum_size = Vector2(320, 240)
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_q1h1b")
 script = ExtResource("1_q4i1q")
 tab_button_group = SubResource("ButtonGroup_af52h")
 
@@ -122,6 +127,7 @@ initial_mana = 10
 max_mana = 20
 
 [node name="BattlefieldLogic" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 script = ExtResource("2_h40sh")
 
@@ -160,6 +166,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gm1nq")
 value = 10.49
 show_percentage = false
 
+[node name="HPLabel" type="Label" parent="BattlefieldLogic/Enemy/ProgressBar"]
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 23.0
+
 [node name="Clock" type="Sprite2D" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("entity")]
 position = Vector2(203, 83)
 texture = SubResource("AtlasTexture_gm1nq")
@@ -169,6 +180,7 @@ entity = NodePath("..")
 [node name="Player" type="Node" parent="BattlefieldLogic"]
 unique_name_in_owner = true
 script = ExtResource("4_lvn8x")
+delay = 4
 
 [node name="ActionMenuButtons" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -322,6 +334,14 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gm1nq")
 value = 10.49
 fill_mode = 3
 show_percentage = false
+
+[node name="HPLabel" type="Label" parent="Panel/PlayerHealth"]
+layout_mode = 0
+offset_left = -18.0
+offset_right = 20.0
+offset_bottom = 14.0
+text = "100"
+label_settings = SubResource("LabelSettings_q1h1b")
 
 [node name="Clock" type="Sprite2D" parent="Panel" node_paths=PackedStringArray("entity")]
 position = Vector2(3, 0)

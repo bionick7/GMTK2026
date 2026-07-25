@@ -8,6 +8,7 @@ enum MetaState {
 }
 
 @export var meta_state := MetaState.COMBAT
+@export var start_enemy := ""
 
 var choices = [
 	{ enemy_type = "imp" },
@@ -17,7 +18,9 @@ var choices = [
 @onready var current_ui_root = $UIRooot
 
 func _ready() -> void:
-	if MetaState.CHOICE:
+	if start_enemy in DataManager.enemy_list:
+		restart_combat({ enemy_type = start_enemy })
+	elif MetaState.CHOICE:
 		_on_ui_rooot_round_finished(false)
 	else:
 		$Choice.hide()
@@ -40,16 +43,13 @@ func _on_ui_rooot_round_finished(player_won: bool) -> void:
 	# For now, let's set it up this way. For real,
 	# you would have a method on the choice button 
 	# itself that handles this
-	$Choice/V/A/Label.text = enemy_a.enemy_name
-	$Choice/V/A/Icon.texture = enemy_a.icon
-	$Choice/V/B/Label.text = enemy_b.enemy_name
-	$Choice/V/B/Icon.texture = enemy_b.icon
+	$Choice/V/A.setup(enemy_a)
+	$Choice/V/B.setup(enemy_b)
 	
 	meta_state = MetaState.CHOICE
 	$Choice.show()
 
-func restart_combat(player_choice: int) -> void:
-	var new_combat_data = choices[player_choice]
+func restart_combat(new_combat_data: Dictionary) -> void:
 	if is_instance_valid(current_ui_root):
 		current_ui_root.queue_free()
 	var new_root = preload("res://scenes/ui_root.tscn").instantiate()
@@ -67,9 +67,9 @@ func restart_combat(player_choice: int) -> void:
 func _on_a_pressed() -> void:
 	if meta_state != MetaState.CHOICE:
 		return
-	restart_combat(0)
+	restart_combat(choices[0])
 	
 func _on_b_pressed() -> void:
 	if meta_state != MetaState.CHOICE:
 		return
-	restart_combat(1)
+	restart_combat(choices[1])

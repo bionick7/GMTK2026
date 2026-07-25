@@ -18,6 +18,9 @@ func set_enemy_type(p_enemy_type: String) -> void:
 	enemy_type = p_enemy_type
 	var possible_actions := DataManager.enemy_actions[enemy_type]
 	var enemy_type := DataManager.enemy_list[enemy_type]
+	max_hp = enemy_type.hp
+	hp = max_hp
+	print("Spawning Enemy of type %s with %d HP" % [enemy_type.enemy_name, enemy_type.hp])
 	$Sprite.texture = enemy_type.icon
 
 func run():
