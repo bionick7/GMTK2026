@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dtvfcycbwm4de" path="res://scenes/progress_monitor.gd" id="1_cufgd"]
 [ext_resource type="PackedScene" uid="uid://bvx0mqut0w828" path="res://scenes/EnemyChoice.tscn" id="3_daa6r"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_cufgd"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_daa6r"]
 allow_unpress = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kl6q"]
@@ -23,13 +23,7 @@ script = ExtResource("1_cufgd")
 start_enemy = "Shrimobi"
 
 [node name="UIRooot" parent="." instance=ExtResource("1_4bcw6")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-tab_button_group = SubResource("ButtonGroup_cufgd")
+tab_button_group = SubResource("ButtonGroup_daa6r")
 
 [node name="Choice" type="PanelContainer" parent="."]
 visible = false

@@ -6,7 +6,7 @@ var initial_mana: int = 6
 @export
 var max_mana: int = 10
 
-@onready var counter: RichTextLabel = $counter
+@onready var counter: Label = $counter
 
 # Alias for value
 var player_mana: int:
@@ -19,7 +19,6 @@ var enemy_mana:
 
 func _process(delta: float) -> void:
 	counter.text = str(max_mana,"/",value as int)
-
 
 func _ready() -> void:
 	min_value = 0

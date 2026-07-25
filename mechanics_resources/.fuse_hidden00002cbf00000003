@@ -1,0 +1,34 @@
+SKILL,DESCRIPTION,COST,DAMAGE,HEALTH,BLOCK,EFFECT,DURATION,WHO
+Head bash,A simple attack for the armless creature,1,1,,,,,Shrub;Shrime
+Leaf throw,A barrage of sharp leaves,2,2,,,,,Shrub
+Stump bash,A simple attack for the stumped creature,3,1,,,,,Stumped
+Vine attack,An underground ambush!,10,4,,,,,Stumped
+Laugh,An unpromted action. What's so funny huh?,10,,,,,,Stumped
+Thermokinesis,A sudden change in the tempreture. Makes every action consume health for some time,7,,,,poison(1),3,Ice Fairy
+Snowball,"An unpredictable act of folly, such a bad mannered kid! (Delays turn by 1)",4,,,,delay,1,Ice Fairy
+Chronokenisis,A sudden change in tempo. (Makes the user act 2 times in one turn),15,,,,double_action,-3,Time Fairy
+Time drain,Saps time from the target but inexplicably returns some health? what is she trying to achive?,1,-2,,,,,Time Fairy
+Hydrokenisis,A helpful assist. (Heals target),15,-8,,,,,Water Fairy
+Healing waters,A less helpful but appreciated assist. (Heals target),5,-3,,,,,Water Fairy
+Prolefirate,There's two of them now?! (Doubles attack and mana consumption),15,,,,double_damage;double_mana,-3;-3,Shrimobi
+Shlice,A quick unreactable slash... I feel funny. (deals damage and delays action for 1 turn),7,3,,,delay,1,Shrimobi
+Quickification,What an unpredictable creature... (Allows user to act twice in one turn),10,,,,double_action,-3,Shrimobi
+Green bash,A simple attack for a greenture,5,4,,,,,Mossatuar;Moss Man
+Hydration,Water's locked to their feet now. (Heals user),10,,4,,,,Mossatuar;Moss Man
+Green slash,A very dangerous move to endure.,10,5,,,,,Mossatuar
+Chant,It... has a voice? (does nothing),2,,,,,,Old Doll
+Inch closer,???? (makes target too scared to act for their turn),3,,,,delay,1,Old Doll
+Whisper,Hm? (does nothing),2,,,,,,Old Doll
+Ice storm,A massive shift in internal tempreture and air currents,10,5,,,,,Old Doll;Angel's Corpse
+Murmer,It... has a voice? (does nothing),2,,,,,,Living Glass
+Crakle,Who's animating this thing? (does nothing),2,,,,,,Living Glass
+Glassier,A very dangerous barrage of glass pieces.,7,4,,,,,Living Glass
+Glassh,Very slow but very hard to avoid.,12,5,,,,,Living Glass
+Healing prayers,A prayer to the ancestors. (Heals user),10,,5,,,,Angel's Corpse
+Fire storm,My elemental weakness.,10,6,,,,,Demon's Remains
+Flaming floor,NOT THE FLOOR!! (makes every action the target does consume health),12,,,,poison(4),3,Demon's Remains
+Snow Grave,An insane blizzard being summond for blood,5,5,,,,,Regrets of Time
+Private Square,Messes with the tempo of the battle. Makes user act twice in one turn,5,,,,delay;double_action,2;-2,Regrets of Time
+Maki madoshi,Reverses the consequences of actions. Returns health to a previous point,5,,20,,,,Regrets of Time
+Blood frost,damages target every turn if they act,5,,,,poison(5),3,Regrets of Time
+Reminisce,Doubles attack and mana consumption,5,,,,double_mana;double_damage,-3;-3,Regrets of Time
