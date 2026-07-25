@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
 [ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
-[ext_resource type="Script" path="res://scenes/status_indicator.gd" id="7_q1h1b"]
+[ext_resource type="Script" uid="uid://cw24ue5yd58ld" path="res://scenes/status_indicator.gd" id="7_q1h1b"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
 [ext_resource type="Texture2D" uid="uid://bkmgu1ya50lti" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
 [ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
