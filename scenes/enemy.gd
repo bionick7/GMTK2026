@@ -57,7 +57,6 @@ func reset(p_enemy_type: String) -> void:
 	max_hp = enemy_type.hp
 	hp = max_hp
 	statuses = {}
-	pendulum.set_player_mana(20)
 	for action_label in action_labels:
 		action_label.text = ""
 	
