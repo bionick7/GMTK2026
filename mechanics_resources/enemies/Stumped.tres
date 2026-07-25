@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://dss8gteikjuqc"]
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://xygxyjlxqtn7"]
 
 [ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_nwtkc"]
 [ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_n2ivo"]
 
 [resource]
 script = ExtResource("2_n2ivo")
-enemy_name = "Shrime"
+enemy_name = "Stumped"
 description = "a slime made of mushrooms. maybe a mushroom made of slime?
 
 "
 icon = ExtResource("1_nwtkc")
-hp = 50
+hp = 12

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_jlp51")
-enemy_name = "Living Glass"
+enemy_name = "Angel's Corpse"
 description = "broken glass from many instruments that make time legible"
 icon = ExtResource("1_8ewch")
-hp = 500
+hp = 35

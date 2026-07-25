@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("2_ns7fw")
-enemy_name = "Stumped"
+enemy_name = "Ice Fairy"
 description = "a walking talking always laughing stump. 
 
 "
 icon = ExtResource("1_wd7xa")
-hp = 120
+hp = 12

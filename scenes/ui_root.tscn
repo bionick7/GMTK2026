@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=37 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Theme" uid="uid://snchaitq3fef" path="res://assets/main_ui.tres" id="1_q1h1b"]
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
@@ -10,11 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://bdtg0x7r5xpgd" path="res://assets/sprites/UI/Icon_container_and_Dialogue_box.png" id="5_dmway"]
 [ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="5_nkhet"]
 [ext_resource type="Texture2D" uid="uid://4pogvk30a3yf" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
-[ext_resource type="Texture2D" uid="uid://dulro07ka11fa" path="res://assets/sprites/Atlases/Clock.png" id="6_gm1nq"]
 [ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
 [ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
-[ext_resource type="Script" uid="uid://cw24ue5yd58ld" path="res://scenes/turn_clock.gd" id="7_q1h1b"]
+[ext_resource type="Script" uid="uid://cw24ue5yd58ld" path="res://scenes/status_indicator.gd" id="7_q1h1b"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
 [ext_resource type="Texture2D" uid="uid://bkmgu1ya50lti" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
 [ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
@@ -36,10 +35,8 @@ bg_color = Color(0.246693, 0.674632, 0.584268, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm1nq"]
 bg_color = Color(0.545174, 0.898375, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gm1nq"]
-resource_local_to_scene = true
-atlas = ExtResource("6_gm1nq")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="LabelSettings" id="LabelSettings_q1h1b"]
+font_color = Color(0.246693, 0.674632, 0.584268, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvnly"]
 
@@ -78,7 +75,7 @@ category = "None"
 damage = 0
 heal = 0
 block = 0
-delay = 0
+statuses = []
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
 
 [sub_resource type="Resource" id="Resource_d25nc"]
@@ -90,16 +87,8 @@ category = "None"
 damage = 0
 heal = 0
 block = 0
-delay = 0
+statuses = []
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
-
-[sub_resource type="LabelSettings" id="LabelSettings_q1h1b"]
-font_color = Color(0.246693, 0.674632, 0.584268, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_07w1x"]
-resource_local_to_scene = true
-atlas = ExtResource("6_gm1nq")
-region = Rect2(0, 0, 32, 32)
 
 [node name="UIRooot" type="Control"]
 custom_minimum_size = Vector2(320, 240)
@@ -127,7 +116,6 @@ initial_mana = 10
 max_mana = 20
 
 [node name="BattlefieldLogic" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 script = ExtResource("2_h40sh")
 
@@ -155,6 +143,7 @@ script = ExtResource("12_42imw")
 target = NodePath("..")
 
 [node name="Shield" type="ProgressBar" parent="BattlefieldLogic/Enemy/ProgressBar"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,16 +160,93 @@ layout_mode = 0
 offset_right = 91.0
 offset_bottom = 23.0
 
-[node name="Clock" type="Sprite2D" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("entity")]
-position = Vector2(203, 83)
-texture = SubResource("AtlasTexture_gm1nq")
+[node name="StatusIndicator" type="RichTextLabel" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("entity")]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 83.0
+offset_right = 243.0
+offset_bottom = 152.0
+bbcode_enabled = true
+text = "XX"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+script = ExtResource("7_q1h1b")
+entity = NodePath("..")
+vertical = true
+
+[node name="Player" type="Control" parent="BattlefieldLogic"]
+unique_name_in_owner = true
+anchors_preset = 0
+script = ExtResource("4_lvn8x")
+max_hp = 10
+
+[node name="PlayerHealth" type="TextureProgressBar" parent="BattlefieldLogic/Player" node_paths=PackedStringArray("target")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 302.0
+offset_top = 58.0
+offset_right = 342.0
+offset_bottom = 174.0
+grow_horizontal = 0
+grow_vertical = 0
+value = 37.0
+fill_mode = 3
+texture_under = ExtResource("7_af52h")
+texture_progress = ExtResource("8_d25nc")
+script = ExtResource("12_42imw")
+target = NodePath("..")
+
+[node name="Shield" type="ProgressBar" parent="BattlefieldLogic/Player/PlayerHealth"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = -22.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_fswbb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gm1nq")
+value = 10.49
+fill_mode = 3
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="BattlefieldLogic/Player/PlayerHealth"]
+layout_mode = 0
+offset_left = -18.0
+offset_right = 20.0
+offset_bottom = 14.0
+text = "100"
+label_settings = SubResource("LabelSettings_q1h1b")
+
+[node name="StatusIndicator" type="RichTextLabel" parent="BattlefieldLogic/Player" node_paths=PackedStringArray("entity")]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 175.0
+offset_right = 246.0
+offset_bottom = 189.0
 script = ExtResource("7_q1h1b")
 entity = NodePath("..")
 
-[node name="Player" type="Node" parent="BattlefieldLogic"]
-unique_name_in_owner = true
-script = ExtResource("4_lvn8x")
-delay = 4
+[node name="Panel" type="TextureRect" parent="BattlefieldLogic/Player"]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 173.0
+offset_right = 320.0
+offset_bottom = 239.0
+texture = ExtResource("12_d25nc")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="Sprite2D" parent="BattlefieldLogic/Player/Panel"]
+position = Vector2(34, 34)
+texture = ExtResource("13_qvnly")
 
 [node name="ActionMenuButtons" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -289,69 +355,6 @@ offset_right = 247.0
 offset_bottom = 152.0
 mouse_filter = 2
 texture = ExtResource("10_o8pct")
-
-[node name="Panel" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 254.0
-offset_top = 173.0
-offset_right = 320.0
-offset_bottom = 239.0
-texture = ExtResource("12_d25nc")
-metadata/_edit_group_ = true
-
-[node name="PlayerHealth" type="TextureProgressBar" parent="Panel" node_paths=PackedStringArray("target")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -18.0
-offset_top = -181.0
-offset_right = 22.0
-offset_bottom = -65.0
-grow_horizontal = 0
-grow_vertical = 0
-value = 37.0
-fill_mode = 3
-texture_under = ExtResource("7_af52h")
-texture_progress = ExtResource("8_d25nc")
-script = ExtResource("12_42imw")
-target = NodePath("../../BattlefieldLogic/Player")
-
-[node name="Shield" type="ProgressBar" parent="Panel/PlayerHealth"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_right = -22.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxEmpty_fswbb")
-theme_override_styles/fill = SubResource("StyleBoxFlat_gm1nq")
-value = 10.49
-fill_mode = 3
-show_percentage = false
-
-[node name="HPLabel" type="Label" parent="Panel/PlayerHealth"]
-layout_mode = 0
-offset_left = -18.0
-offset_right = 20.0
-offset_bottom = 14.0
-text = "100"
-label_settings = SubResource("LabelSettings_q1h1b")
-
-[node name="Clock" type="Sprite2D" parent="Panel" node_paths=PackedStringArray("entity")]
-position = Vector2(3, 0)
-texture = SubResource("AtlasTexture_07w1x")
-script = ExtResource("7_q1h1b")
-entity = NodePath("../../BattlefieldLogic/Player")
-
-[node name="TextureRect" type="Sprite2D" parent="Panel"]
-position = Vector2(34, 34)
-texture = ExtResource("13_qvnly")
 
 [node name="Next" type="Button" parent="."]
 visible = false
