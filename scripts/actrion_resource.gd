@@ -13,7 +13,8 @@ var description := ""
 @export var damage: int = 0
 @export var heal: int = 0
 @export var block: int = 0
-@export var delay: int = 0
+
+@export var statuses := []
 
 static func from_dict(data: Dictionary[String, Variant]) -> ActionResource:
 	var res := ActionResource.new()
@@ -24,21 +25,40 @@ static func from_dict(data: Dictionary[String, Variant]) -> ActionResource:
 	res.damage = data.get("DAMAGE", 0)
 	res.heal = data.get("HEALTH", 0)
 	res.block = data.get("BLOCK", 0)
-	res.delay = data.get("DELAY", 0)
-	return res
 	
+	var effects_inp = data.get("EFFECT", [])
+	var delays_inp = data.get("DURATION", [])
+	#printt(effects_inp, delays_inp)
+	
+	if effects_inp is Array and delays_inp is Array:
+		assert(len(effects_inp) == len(delays_inp))
+		for i in range(len(effects_inp)):
+			res.statuses.append({
+				effect=effects_inp[i],
+				duration=int(delays_inp[i]),
+			})
+	elif effects_inp is not Array and delays_inp is not Array:
+		res.statuses = [{
+			effect=str(effects_inp),
+			duration=int(delays_inp),
+		}]
+	
+	return res
 
 func is_available(progression_tracker) -> bool:
 	return true
 
 func get_label() -> String:
 	return "%s (%d)\n" % [name, cost]
-
+	
 func display() -> String:
 	var res := ""
 	#res += "---------------\n"
 	res += "%s (%d)\n" % [name, cost]
-	res += "D %d H %d B %d Dly %d\n" % [damage, heal, block, delay]
+	res += "D %d H %d B %d\n" % [damage, heal, block]
+	for status in statuses:
+		res += "%s [%d] ; " % [status.effect, status.duration]
+	res += "\n"
 	res += description + "\n"
 	#res += "---------------\n"
 	return res

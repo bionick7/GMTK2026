@@ -20,6 +20,7 @@ anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 240.0
 script = ExtResource("1_cufgd")
+start_enemy = "Shrimobi"
 
 [node name="UIRooot" parent="." instance=ExtResource("1_4bcw6")]
 layout_mode = 1

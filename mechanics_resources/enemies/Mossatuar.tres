@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://ggrxyt1qd87b"]
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://cocpjyaa0xh0s"]
 
 [ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_0v5ov"]
 [ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_hikck"]
 
 [resource]
 script = ExtResource("2_hikck")
-enemy_name = "Moss Man"
+enemy_name = "Mossatuar"
 description = "Moss Man"
 icon = ExtResource("1_0v5ov")
-hp = 150
+hp = 30

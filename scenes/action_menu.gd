@@ -34,8 +34,13 @@ func get_bbcode_action_display(action: ActionResource) -> String:
 		txt += "[img]res://assets/sprites/Atlases/attack_icon.tres[/img] [color=#eb6b6f]%d[/color] " % action.damage
 	if action.heal != 0:
 		txt += "[img]res://assets/sprites/Atlases/heal_icon.tres[/img] [color=#3fac95]%d[/color] " % action.heal
-	if action.delay != 0:
-		txt += "[img]res://assets/sprites/Atlases/delay_icon.tres[/img] [color=#f9a875]%d[/color] " % action.delay
+	if len(txt) > 0 and len(action.statuses) > 0:
+		txt += "\n"
+	for status in action.statuses:
+		# TODO: replace with icons
+		#txt += "[img]res://assets/sprites/Atlases/heal_icon.tres[/img] [color=#3fac95]%d[/color] " % action.heal
+		txt += "%s [%d] ;" % [status.effect, status.duration]
+	txt = txt.rstrip(";")
 	txt += "\n" + action.description
 	return txt
 

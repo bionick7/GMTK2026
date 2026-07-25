@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://c7pei5b17lnec"]
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://bsvpf6qqxbx36"]
 
 [ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_wpqar"]
 [ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_t44j6"]
@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_t44j6")
 enemy_name = "Shrub"
-description = "NOT YET USED"
+description = "small bush looking thing with a constant angry stare"
 icon = ExtResource("1_wpqar")
-hp = 50
+hp = 5

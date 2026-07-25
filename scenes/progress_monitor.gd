@@ -50,18 +50,8 @@ func _on_ui_rooot_round_finished(player_won: bool) -> void:
 	$Choice.show()
 
 func restart_combat(new_combat_data: Dictionary) -> void:
-	if is_instance_valid(current_ui_root):
-		current_ui_root.queue_free()
-	var new_root = preload("res://scenes/ui_root.tscn").instantiate()
-	add_child(new_root)
-	new_root.name = "UIRoot"
-	move_child(new_root, 0)
-	new_root.round_finished.connect(_on_ui_rooot_round_finished)
-	new_root.setup(new_combat_data.enemy_type)
-	
+	current_ui_root.setup(new_combat_data.enemy_type)
 	meta_state = MetaState.COMBAT
-	current_ui_root = new_root
-	
 	$Choice.hide()
 
 func _on_a_pressed() -> void:
