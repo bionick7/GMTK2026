@@ -13,6 +13,10 @@ func _init() -> void:
     _extract_enemy_types_from_dict(ENEMY_FOLDER, enemy_list)
     player_actions = _load_player_actions(SKILLS_DATA)
     enemy_actions = _load_enemy_actions(ENEMY_SKILLS_DATA)
+    for enemy in enemy_list:
+        assert(enemy in enemy_actions, "No actions for enemy %s " % enemy)
+        printt(enemy, len(enemy_actions[enemy]))
+    #breakpoint
     
 func _extract_enemy_types_from_dict(folder_path: String, 
                                     res: Dictionary[String, EnemyType]) -> void:
@@ -72,6 +76,8 @@ func _load_enemy_actions(filepath: String) -> Dictionary[String, Array]:
         var action = ActionResource.from_dict(action_dict)
         var action_enemy_types = []
         action_enemy_types = action_dict.get("WHO", [])
+        if action_enemy_types is String:
+            action_enemy_types = [action_enemy_types]
         for action_enemy_type in action_enemy_types:
             if action_enemy_type not in res:
                 res[action_enemy_type] = []

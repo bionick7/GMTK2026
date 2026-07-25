@@ -20,7 +20,7 @@ func _input(event: InputEvent) -> void:
 		round_finished.emit(false)
 	
 func setup(enemy_type: String) -> void:
-	$BattlefieldLogic/Enemy.set_enemy_type(enemy_type)
+	$BattlefieldLogic.setup(enemy_type)
 	
 func _on_action_tab_changed(x: BaseButton):
 	for i in range(len(menu_buttons)):
@@ -31,8 +31,10 @@ func _on_action_tab_changed(x: BaseButton):
 
 func _on_player_die() -> void:
 	round_finished.emit(true)
+	$BattlefieldLogic.battle_end()
 	print("Player died")
 
 func _on_enemy_die() -> void:
 	round_finished.emit(false)
+	$BattlefieldLogic.battle_end()
 	print("Enemy died")

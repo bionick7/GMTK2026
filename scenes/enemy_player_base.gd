@@ -3,7 +3,6 @@ extends Node
 
 @export var max_hp: int = 100
 @export var block := 0
-@export var delay := 0
 
 @onready var hp := max_hp
 
@@ -44,16 +43,30 @@ func tick_delay() -> void:
 		if statuses[status_key] <= 0:
 			statuses.erase(status_key)
 
+func has_status(effect: String) -> bool:
+	return statuses.get(effect, 0) > 0
+
+func evaluate_stats():
+	# Check for statuses
+	if has_status("heal(2)"):
+		heal(2)
+	if has_status("poison(1)"):
+		take_damage(1)
+	if has_status("poison(2)"):
+		take_damage(2)
+	if has_status("poison(4)"):
+		take_damage(4)
+	if has_status("poison(5)"):
+		take_damage(5)
+
 func serialize() -> Dictionary:
 	return {
 		hp = hp,
 		block = block,
-		delay = delay,
 		statuses = statuses,
 	}
 
 func deserialize(data: Dictionary) -> void:
 	hp = data.hp
 	block = data.block
-	delay = data.delay
 	statuses = data.statuses

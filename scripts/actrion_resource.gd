@@ -34,7 +34,7 @@ static func from_dict(data: Dictionary[String, Variant]) -> ActionResource:
 		assert(len(effects_inp) == len(delays_inp))
 		for i in range(len(effects_inp)):
 			res.statuses.append({
-				status=effects_inp[i],
+				effect=effects_inp[i],
 				duration=int(delays_inp[i]),
 			})
 	elif effects_inp is not Array and delays_inp is not Array:

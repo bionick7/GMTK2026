@@ -8,7 +8,7 @@ var max_mana: int = 10
 
 # Alias for value
 var player_mana: int:
-	get(): return value
+	get(): return int(value)
 	#set(x): value = x
 
 # Tied to Mana
