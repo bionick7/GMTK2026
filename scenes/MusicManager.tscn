@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://lasx7mn6c4op"]
+
+[ext_resource type="AudioStream" uid="uid://cikjjruybuqij" path="res://sounds/music/Tower of Time.wav" id="1_k17rw"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_k17rw")
+autoplay = true
+mix_target = 1
+bus = &"Music"
