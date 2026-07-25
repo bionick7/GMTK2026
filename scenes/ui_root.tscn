@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=39 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Theme" uid="uid://snchaitq3fef" path="res://assets/main_ui.tres" id="1_q1h1b"]
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
 [ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
+[ext_resource type="Texture2D" uid="uid://d1jb7jtpx1eev" path="res://assets/sprites/Background/background.png" id="2_q1h1b"]
 [ext_resource type="Script" uid="uid://cld6b7vy8o42b" path="res://scenes/enemy.gd" id="3_lvn8x"]
 [ext_resource type="PackedScene" uid="uid://cwdd7w25lcvgk" path="res://scenes/pendulum.tscn" id="3_q4i1q"]
 [ext_resource type="Script" uid="uid://b0fvh4i6r3nxb" path="res://scenes/player.gd" id="4_lvn8x"]
@@ -26,7 +27,7 @@
 allow_unpress = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fswbb"]
-bg_color = Color(0.486076, 0.246693, 0.344884, 1)
+bg_color = Color(0.921569, 0.419608, 0.435294, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkhet"]
 bg_color = Color(0.246693, 0.674632, 0.584268, 1)
@@ -109,14 +110,9 @@ theme = ExtResource("1_q1h1b")
 script = ExtResource("1_q4i1q")
 tab_button_group = SubResource("ButtonGroup_af52h")
 
-[node name="BG" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.10012, 0.0994528, 0.211891, 1)
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(161, 120)
+texture = ExtResource("2_q1h1b")
 
 [node name="Pendulum" parent="." groups=["Pendulum"] instance=ExtResource("3_q4i1q")]
 unique_name_in_owner = true
@@ -350,7 +346,7 @@ script = ExtResource("7_q1h1b")
 entity = NodePath("../../BattlefieldLogic/Player")
 
 [node name="TextureRect" type="Sprite2D" parent="Panel"]
-position = Vector2(34, 34)
+position = Vector2(35, 34)
 texture = ExtResource("13_qvnly")
 
 [node name="Next" type="Button" parent="."]

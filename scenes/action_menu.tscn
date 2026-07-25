@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://coy4im5ud2r8t"]
+[gd_scene load_steps=10 format=3 uid="uid://coy4im5ud2r8t"]
 
 [ext_resource type="Script" uid="uid://bwqf5cfq6u65a" path="res://scenes/action_menu.gd" id="1_03mqw"]
 [ext_resource type="Texture2D" uid="uid://ip2qge18baa2" path="res://assets/sprites/UI/skills menu/Skills_menu_container.png" id="1_irjmx"]
 [ext_resource type="FontFile" uid="uid://jcsg5f74m1ic" path="res://assets/fonts/m5x7.ttf" id="4_03mqw"]
+[ext_resource type="Texture2D" uid="uid://0k5qmf4xot3d" path="res://assets/sprites/UI/skills menu/Skills_menu_arrow_unhovered.png" id="5_sqd1j"]
 [ext_resource type="PackedScene" uid="uid://cgo5nycikcghp" path="res://scenes/action_button.tscn" id="5_u14yf"]
+[ext_resource type="Texture2D" uid="uid://gwi7atx8akx5" path="res://assets/sprites/UI/skills menu/Skills_menu_arrow_hovered.png" id="6_ioxuj"]
 [ext_resource type="Texture2D" uid="uid://blry5awycta02" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_description.png" id="6_sqd1j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_irjmx"]
@@ -48,14 +50,17 @@ autowrap_mode = 1
 [node name="V" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 10.0
-offset_right = 89.0
-offset_bottom = 104.0
+offset_top = 1.0
+offset_right = 107.0
+offset_bottom = 112.0
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="Up" type="Button" parent="V"]
+[node name="Up" type="TextureButton" parent="V"]
 layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_sqd1j")
+texture_pressed = ExtResource("6_ioxuj")
 
 [node name="ActionButton" parent="V" instance=ExtResource("5_u14yf")]
 layout_mode = 2
@@ -66,8 +71,12 @@ layout_mode = 2
 [node name="ActionButton3" parent="V" instance=ExtResource("5_u14yf")]
 layout_mode = 2
 
-[node name="Down" type="Button" parent="V"]
+[node name="Down" type="TextureButton" parent="V"]
 layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_sqd1j")
+texture_pressed = ExtResource("6_ioxuj")
+flip_v = true
 
 [connection signal="pressed" from="V/Up" to="." method="_on_up_pressed"]
 [connection signal="pressed" from="V/Down" to="." method="_on_down_pressed"]
