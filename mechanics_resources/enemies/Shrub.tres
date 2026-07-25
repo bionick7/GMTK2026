@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://bsvpf6qqxbx36"]
 
-[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_wpqar"]
+[ext_resource type="Texture2D" uid="uid://del334q4g5mv3" path="res://assets/sprites/Enemies/shrub.png" id="1_wpqar"]
 [ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_t44j6"]
 
 [resource]
