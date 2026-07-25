@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_juc73")
 enemy_name = "Demon's Remains"
-description = "a demon skeleton"
+description = "A demon skeleton"
 icon = ExtResource("1_gukha")
 hp = 40
+levels = 8

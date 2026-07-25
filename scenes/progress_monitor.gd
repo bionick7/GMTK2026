@@ -9,6 +9,11 @@ enum MetaState {
 
 @export var meta_state := MetaState.COMBAT
 @export var start_enemy := ""
+@export_range(1, 5, 1) var start_level := 1
+var game_floor := 0
+
+var level: int:
+	get(): return min(floori(game_floor / 3) + start_level, 5)
 
 var choices = [
 	{ enemy_type = "imp" },
@@ -24,27 +29,43 @@ func _ready() -> void:
 		_on_ui_rooot_round_finished(false)
 	else:
 		$Choice.hide()
+		
+func _get_2_random_enemies() -> Array[EnemyType]:
+	var valid_enemy_types = []
+	for k in DataManager.enemy_list:
+		printt(k, DataManager.enemy_list[k].levels)
+		if DataManager.enemy_list[k].levels & (1 << (level - 1)) != 0:
+			valid_enemy_types.append(k)
+		
+	assert(len(valid_enemy_types) >= 1)
+	var enemy_name_1
+	var enemy_name_2
+	if len(valid_enemy_types) == 1:
+		enemy_name_1 = valid_enemy_types[0]
+		enemy_name_2 = valid_enemy_types[0]
+	else:
+		enemy_name_1 = valid_enemy_types.pick_random()
+		enemy_name_2 = enemy_name_1
+		while enemy_name_2 == enemy_name_1:
+			enemy_name_2 = valid_enemy_types.pick_random()
+	
+	var enemy_a := DataManager.enemy_list[enemy_name_1]
+	var enemy_b := DataManager.enemy_list[enemy_name_2]
+	return [enemy_a, enemy_b]
 
 func _on_ui_rooot_round_finished(player_won: bool) -> void:
-	var enemy_types = DataManager.enemy_list.keys()
-	assert(len(enemy_types) >= 2)
-	var enemy_type_index_1 = randi() % len(enemy_types)
-	var enemy_type_index_2 = randi() % len(enemy_types)
-	while enemy_type_index_2 == enemy_type_index_1:
-		enemy_type_index_2 = randi() % len(enemy_types)
+	if player_won:
+		game_floor += 1
+	else:
+		game_floor = 0
+	var enemies = _get_2_random_enemies()
 	choices = [
-		{ enemy_type = enemy_types[enemy_type_index_1] },
-		{ enemy_type = enemy_types[enemy_type_index_2] },
+		{ enemy_type = enemies[0].enemy_name },
+		{ enemy_type = enemies[1].enemy_name },
 	]
 	
-	var enemy_a := DataManager.enemy_list[enemy_types[enemy_type_index_1]]
-	var enemy_b := DataManager.enemy_list[enemy_types[enemy_type_index_2]]
-	
-	# For now, let's set it up this way. For real,
-	# you would have a method on the choice button 
-	# itself that handles this
-	$Choice/V/A.setup(enemy_a)
-	$Choice/V/B.setup(enemy_b)
+	$Choice/V/A.setup(enemies[0])
+	$Choice/V/B.setup(enemies[1])
 	
 	meta_state = MetaState.CHOICE
 	$Choice.show()

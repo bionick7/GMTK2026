@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("2_u2pt7")
 enemy_name = "Moss Man"
-description = "Moss Man"
+description = "\"Moss Man\"
+-- Moss Man"
 icon = ExtResource("1_jxnfp")
 hp = 50
+levels = 6

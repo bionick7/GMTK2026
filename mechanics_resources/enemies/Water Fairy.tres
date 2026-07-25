@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_5p3sf")
 enemy_name = "Water Fairy"
-description = "a fairy who controls time (is white)
-"
+description = "A rare friend in this hostile world; in control of the waters"
 icon = ExtResource("1_ck2ny")
 hp = 1
+levels = 28

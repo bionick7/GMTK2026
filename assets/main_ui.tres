@@ -1,7 +1,26 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://snchaitq3fef"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://snchaitq3fef"]
 
 [ext_resource type="FontFile" uid="uid://jcsg5f74m1ic" path="res://assets/fonts/m5x7.ttf" id="1_3y68y"]
+[ext_resource type="Texture2D" uid="uid://blry5awycta02" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_description.png" id="1_6masq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xbi30"]
+texture = ExtResource("1_6masq")
+texture_margin_left = 40.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6masq"]
+texture = ExtResource("1_6masq")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [resource]
 default_font = ExtResource("1_3y68y")
 Label/colors/font_color = Color(1, 0.964706, 0.827451, 1)
+Panel/styles/panel = SubResource("StyleBoxTexture_xbi30")
+TooltipPanel/styles/panel = SubResource("StyleBoxTexture_6masq")

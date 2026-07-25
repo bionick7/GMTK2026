@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_jlp51")
 enemy_name = "Angel's Corpse"
-description = "broken glass from many instruments that make time legible"
+description = "Its name was sung in praise many eons ago"
 icon = ExtResource("1_8ewch")
 hp = 35
+levels = 8

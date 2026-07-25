@@ -70,6 +70,14 @@ func player_action(action: ActionResource, target: Enemy) -> void:
 		return
 
 	_handle_attack(action, player, target)
+	if action.damage > 0:
+		$EnemyHurt.play()
+	if action.heal > 0:
+		$PlayerAttack.play()
+	if action.is_buff:
+		$Buff.play()
+	elif action.is_buff:
+		$Debuff.play()
 	
 	print("Player -> %s" % target.enemy_type)
 	print(action.display())
@@ -84,6 +92,13 @@ func enemy_action(action: ActionResource, enemy: Enemy) -> void:
 	pendulum.use_enemy_mana(action.cost)
 
 	_handle_attack(action, enemy, player)
+	
+	if action.damage > 0:
+		$PlayerHurt.play()
+	if action.is_buff:
+		$Buff.play()
+	elif action.is_buff:
+		$Debuff.play()
 	
 	print("%s -> Player" % enemy.enemy_type)
 	print(action.display())

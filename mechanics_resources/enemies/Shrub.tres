@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_t44j6")
 enemy_name = "Shrub"
-description = "small bush looking thing with a constant angry stare"
+description = "Small bush, large angry stare"
 icon = ExtResource("1_wpqar")
 hp = 5
+levels = 1

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_ywkfd")
 enemy_name = "Regrets of Time"
-description = "An amalgamation of everyone's mistakes"
+description = "An amalgamation of everyone's mistakes. Which part of it are your mistakes?"
 icon = ExtResource("1_kxpe5")
 hp = 500
+levels = 16

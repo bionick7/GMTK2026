@@ -14,6 +14,19 @@ const EFFECT_ICON_PATHS = {
 	"delay": "res://assets/sprites/Atlases/status_skip.tres",
 }
 
+const DESCRIPTIONS = {
+	"double_action": "Performs 2 actions",
+	"double_damage": "2x damage",
+	"heal(2)": "Heals 2 p. round",
+	"double_mana": "2x Mana cost",
+	"no_mana": "No Mana cost",
+	"poison(1)": "Damages 1 p. round",
+	"poison(2)": "Damages 2 p. round",
+	"poison(4)": "Damages 4 p. round",
+	"poison(5)": "Damages 5 p. round",
+	"delay": "Cannot take any action",
+}
+
 @export var entity: EnemyPlayerBase
 @export var vertical: bool
 		
@@ -27,7 +40,8 @@ func _process(delta: float) -> void:
 func set_statuses(statuses: Dictionary) -> void:
 	text = ""
 	for effect in statuses:
-		text += "[img]%s[/img] %d " % [
+		text += "[hint=%s][img]%s[/img][/hint] %d " % [
+			DESCRIPTIONS[effect],
 			EFFECT_ICON_PATHS[effect],
 			statuses[effect],
 		]

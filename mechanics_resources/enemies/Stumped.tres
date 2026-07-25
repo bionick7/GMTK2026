@@ -6,8 +6,7 @@
 [resource]
 script = ExtResource("2_n2ivo")
 enemy_name = "Stumped"
-description = "a slime made of mushrooms. maybe a mushroom made of slime?
-
-"
+description = "Walking. talking, but always laughing tree stump"
 icon = ExtResource("1_nwtkc")
 hp = 12
+levels = 3

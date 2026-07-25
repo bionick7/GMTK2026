@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("2_mg2ta")
 enemy_name = "Shrime"
-description = "a slime made of mushrooms. maybe a mushroom made of slime?
-
+description = "A slime made of mushrooms. or a mushroom made of slime?
 "
 icon = ExtResource("1_cwmen")
 hp = 9
+levels = 1

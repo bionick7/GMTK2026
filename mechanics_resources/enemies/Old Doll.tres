@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_tqudx")
 enemy_name = "Old Doll"
-description = "Bulky, mossy and ferocious"
+description = "A broken doll being animated by strings against her will"
 icon = ExtResource("1_qpgs3")
 hp = 10
+levels = 12

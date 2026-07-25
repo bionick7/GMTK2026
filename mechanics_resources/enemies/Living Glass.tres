@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_3wewd")
 enemy_name = "Living Glass"
-description = "a broken doll being animated by strings against her will"
+description = "The very instruments that used to make time legible now serve it's obfuscation"
 icon = ExtResource("1_or54y")
 hp = 30
+levels = 12

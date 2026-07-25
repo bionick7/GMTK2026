@@ -8,6 +8,12 @@ signal enemy_action(action: ActionResource, own: Enemy)
 
 var action_pool: Array[ActionResource] = []
 
+@onready var action_labels = [
+	$Action1Text,
+	$Action2Text,
+]
+
+
 @onready var pendulum: Pendulum = %Pendulum
 
 func _init() -> void:
@@ -51,6 +57,9 @@ func reset(p_enemy_type: String) -> void:
 	max_hp = enemy_type.hp
 	hp = max_hp
 	statuses = {}
+	pendulum.set_player_mana(20)
+	for action_label in action_labels:
+		action_label.text = ""
 	
 	print("Spawning Enemy of type %s with %d HP" % [enemy_type.enemy_name, enemy_type.hp])
 	$Sprite.texture = enemy_type.icon
@@ -73,11 +82,17 @@ func run() -> void:
 		
 	evaluate_stats()
 		
+	for action_label in action_labels:
+		action_label.text = ""
 	for i in range(N_actions):
 		var action = _get_next_action()
+		var label_animation = get_tree().create_tween().set_parallel(true)
 		if is_instance_valid(action):
 			enemy_action.emit(action, self)
-		
+			action_labels[i].text = action.name
+			action_labels[i].visible_ratio = 0
+			label_animation.tween_property(action_labels[i], "visible_ratio", 1, .2)
+	
 	tick_delay()
 	enemy_turn_ended.emit()
 

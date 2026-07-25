@@ -13,6 +13,8 @@ var description := ""
 @export var damage: int = 0
 @export var heal: int = 0
 @export var block: int = 0
+@export var is_buff: bool = false
+@export var is_debuff: bool = false
 
 @export var statuses := []
 
@@ -42,10 +44,23 @@ static func from_dict(data: Dictionary[String, Variant]) -> ActionResource:
 			effect=str(effects_inp),
 			duration=int(delays_inp),
 		}]
+		
+	for status in res.statuses:
+		if status.effect in ["double_action", "double_damage", "heal(2)", "no_mana"]:
+			if status.duration < 0:
+				res.is_buff = true
+			elif status.duration > 0:
+				res.is_debuff = true
+		if status.effect in ["double_mana", "delay"] or status.effect.begins_with("poison"):
+			if status.duration < 0:
+				res.is_debuff = true
+			elif status.duration > 0:
+				res.is_buff = true
 	
 	return res
 
 func is_available(progression_tracker) -> bool:
+	# TODO: Check if tracker is accessible
 	return true
 
 func get_label() -> String:

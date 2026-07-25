@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=43 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Theme" uid="uid://snchaitq3fef" path="res://assets/main_ui.tres" id="1_q1h1b"]
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
@@ -15,13 +15,18 @@
 [ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
 [ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
-[ext_resource type="Script" path="res://scenes/status_indicator.gd" id="7_q1h1b"]
+[ext_resource type="Script" uid="uid://cw24ue5yd58ld" path="res://scenes/status_indicator.gd" id="7_q1h1b"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
 [ext_resource type="Texture2D" uid="uid://bkmgu1ya50lti" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
 [ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
+[ext_resource type="AudioStream" uid="uid://bbhr8i4wcj88k" path="res://sounds/sfx/enemy_hurt.wav" id="11_sf56f"]
 [ext_resource type="Script" uid="uid://0yhkihpp2f76" path="res://scenes/healthbar.gd" id="12_42imw"]
 [ext_resource type="Texture2D" uid="uid://dnfc3s526nwut" path="res://assets/sprites/UI/Character portraits/Portrait_container.png" id="12_d25nc"]
 [ext_resource type="Texture2D" uid="uid://bxbmgqfcyrqu4" path="res://assets/sprites/UI/Character portraits/Default.png" id="13_qvnly"]
+[ext_resource type="AudioStream" uid="uid://cqwqct8w7w60l" path="res://sounds/sfx/player_attack.wav" id="17_urhar"]
+[ext_resource type="AudioStream" uid="uid://cyskjtx4y8nhj" path="res://sounds/sfx/player_hurt.wav" id="18_d5in4"]
+[ext_resource type="AudioStream" uid="uid://cyakndssadi0m" path="res://sounds/sfx/buff.wav" id="19_m86nc"]
+[ext_resource type="AudioStream" uid="uid://c5ons2flos47e" path="res://sounds/sfx/debuff.wav" id="20_iy0gn"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_af52h"]
 allow_unpress = true
@@ -36,9 +41,6 @@ bg_color = Color(0.246693, 0.674632, 0.584268, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm1nq"]
 bg_color = Color(0.545174, 0.898375, 1, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_q1h1b"]
-font_color = Color(0.246693, 0.674632, 0.584268, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvnly"]
 
@@ -77,6 +79,8 @@ category = "None"
 damage = 0
 heal = 0
 block = 0
+is_buff = false
+is_debuff = false
 statuses = []
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
 
@@ -89,6 +93,8 @@ category = "None"
 damage = 0
 heal = 0
 block = 0
+is_buff = false
+is_debuff = false
 statuses = []
 metadata/_custom_type_script = "uid://dv3bioi7lfyx5"
 
@@ -109,6 +115,8 @@ unique_name_in_owner = true
 layout_mode = 1
 offset_top = 1.0
 offset_bottom = 129.0
+max_value = 20.0
+value = 11.87
 initial_mana = 10
 max_mana = 20
 
@@ -120,25 +128,41 @@ offset_bottom = 13.0
 label_settings = ExtResource("5_07w1x")
 
 [node name="BattlefieldLogic" type="Control" parent="."]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_h40sh")
 
 [node name="Enemy" type="Control" parent="BattlefieldLogic" groups=["Enemies"]]
-layout_mode = 3
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -55.0
+offset_right = 53.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_lvn8x")
 
 [node name="Sprite" type="Sprite2D" parent="BattlefieldLogic/Enemy"]
-position = Vector2(160, 119)
+position = Vector2(53, 53)
 scale = Vector2(0.609375, 0.609375)
 texture = ExtResource("5_nkhet")
 
 [node name="ProgressBar" type="ProgressBar" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("target")]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 63.0
-offset_right = 207.0
-offset_bottom = 77.0
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 13.0
+grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_fswbb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_nkhet")
 value = 27.69
@@ -160,16 +184,20 @@ value = 10.49
 show_percentage = false
 
 [node name="HPLabel" type="Label" parent="BattlefieldLogic/Enemy/ProgressBar"]
-layout_mode = 0
-offset_right = 91.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StatusIndicator" type="RichTextLabel" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("entity")]
 layout_mode = 0
-offset_left = 203.0
-offset_top = 83.0
-offset_right = 243.0
-offset_bottom = 152.0
+offset_left = 94.0
+offset_top = 18.0
+offset_right = 134.0
+offset_bottom = 87.0
 bbcode_enabled = true
 text = "XX"
 scroll_active = false
@@ -178,6 +206,33 @@ shortcut_keys_enabled = false
 script = ExtResource("7_q1h1b")
 entity = NodePath("..")
 vertical = true
+
+[node name="Action1Text" type="Label" parent="BattlefieldLogic/Enemy"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -18.0
+offset_right = 53.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+
+[node name="Action2Text" type="Label" parent="BattlefieldLogic/Enemy"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
 
 [node name="Player" type="Control" parent="BattlefieldLogic"]
 unique_name_in_owner = true
@@ -224,11 +279,13 @@ show_percentage = false
 
 [node name="HPLabel" type="Label" parent="BattlefieldLogic/Player/PlayerHealth"]
 layout_mode = 0
-offset_left = -18.0
-offset_right = 20.0
-offset_bottom = 14.0
-text = "100"
-label_settings = SubResource("LabelSettings_q1h1b")
+offset_left = 2.0
+offset_top = 10.0
+offset_right = 19.0
+offset_bottom = 24.0
+text = "10"
+label_settings = ExtResource("5_07w1x")
+horizontal_alignment = 2
 
 [node name="StatusIndicator" type="RichTextLabel" parent="BattlefieldLogic/Player" node_paths=PackedStringArray("entity")]
 layout_mode = 0
@@ -236,6 +293,8 @@ offset_left = 3.0
 offset_top = 175.0
 offset_right = 246.0
 offset_bottom = 189.0
+fit_content = true
+horizontal_alignment = 2
 script = ExtResource("7_q1h1b")
 entity = NodePath("..")
 
@@ -251,6 +310,26 @@ metadata/_edit_group_ = true
 [node name="TextureRect" type="Sprite2D" parent="BattlefieldLogic/Player/Panel"]
 position = Vector2(34, 34)
 texture = ExtResource("13_qvnly")
+
+[node name="EnemyHurt" type="AudioStreamPlayer" parent="BattlefieldLogic"]
+stream = ExtResource("11_sf56f")
+bus = &"SFX"
+
+[node name="PlayerAttack" type="AudioStreamPlayer" parent="BattlefieldLogic"]
+stream = ExtResource("17_urhar")
+bus = &"SFX"
+
+[node name="PlayerHurt" type="AudioStreamPlayer" parent="BattlefieldLogic"]
+stream = ExtResource("18_d5in4")
+bus = &"SFX"
+
+[node name="Buff" type="AudioStreamPlayer" parent="BattlefieldLogic"]
+stream = ExtResource("19_m86nc")
+bus = &"SFX"
+
+[node name="Debuff" type="AudioStreamPlayer" parent="BattlefieldLogic"]
+stream = ExtResource("20_iy0gn")
+bus = &"SFX"
 
 [node name="ActionMenuButtons" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -309,12 +388,14 @@ offset_left = 1.0
 offset_top = 78.0
 offset_right = 257.0
 offset_bottom = 192.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_d25nc")
 current_tab = 0
 tabs_visible = false
 
 [node name="Placeholder" type="Control" parent="ActionMenu"]
 layout_mode = 2
+mouse_filter = 2
 metadata/_tab_index = 0
 
 [node name="Fight" parent="ActionMenu" instance=ExtResource("7_ou7aw")]

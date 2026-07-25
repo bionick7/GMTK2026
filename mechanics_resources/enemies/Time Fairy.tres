@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_2c8dq")
 enemy_name = "Time Fairy"
-description = "a fairy who controls ice (is light blue)
-"
+description = "Time-bending fairy"
 icon = ExtResource("1_v4j72")
 hp = 20
+levels = 7

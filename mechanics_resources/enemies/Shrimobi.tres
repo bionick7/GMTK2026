@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_10wcr")
 enemy_name = "Shrimobi"
-description = "a fairy who controls water (is blue and friendly)"
+description = "A mushroom ... ninja?"
 icon = ExtResource("1_25tal")
 hp = 15
+levels = 6

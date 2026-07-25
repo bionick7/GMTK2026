@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_hikck")
 enemy_name = "Mossatuar"
-description = "Moss Man"
+description = "Bulky, mossy and ferocious"
 icon = ExtResource("1_0v5ov")
 hp = 30
+levels = 6

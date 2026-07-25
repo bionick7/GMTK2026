@@ -25,7 +25,8 @@ func _ready() -> void:
 	max_value = max_mana
 	value = initial_mana
 	
-
+func set_player_mana(x: int) -> void:
+	value = x
 
 func use_player_mana(x: int) -> void:
 	value -= x
