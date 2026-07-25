@@ -326,7 +326,7 @@ script = ExtResource("7_q1h1b")
 entity = NodePath("../../BattlefieldLogic/Player")
 
 [node name="TextureRect" type="Sprite2D" parent="Panel"]
-position = Vector2(34, 34)
+position = Vector2(35, 34)
 texture = ExtResource("13_qvnly")
 
 [node name="Next" type="Button" parent="."]
