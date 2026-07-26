@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7cws5852gv2h"]
+[gd_scene load_steps=8 format=3 uid="uid://b7cws5852gv2h"]
 
 [ext_resource type="PackedScene" uid="uid://fqb81nia2a3r" path="res://scenes/ui_root.tscn" id="1_4bcw6"]
 [ext_resource type="Script" uid="uid://dtvfcycbwm4de" path="res://scenes/progress_monitor.gd" id="1_cufgd"]
 [ext_resource type="PackedScene" uid="uid://bvx0mqut0w828" path="res://scenes/EnemyChoice.tscn" id="3_daa6r"]
+[ext_resource type="Texture2D" uid="uid://dipfkw15e0lme" path="res://assets/sprites/Title screen/title.png" id="4_2kl6q"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_daa6r"]
 allow_unpress = true
@@ -14,6 +15,14 @@ content_margin_right = 20.0
 content_margin_bottom = 20.0
 bg_color = Color(0.10161, 0.0977035, 0.211521, 1)
 
+[sub_resource type="GDScript" id="GDScript_2kl6q"]
+script/source = "extends TextureRect
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		hide()
+"
+
 [node name="ProgressMonitor" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -21,7 +30,6 @@ offset_right = 320.0
 offset_bottom = 240.0
 script = ExtResource("1_cufgd")
 meta_state = 1
-start_enemy = "Shrimobi"
 
 [node name="UIRooot" parent="." instance=ExtResource("1_4bcw6")]
 tab_button_group = SubResource("ButtonGroup_daa6r")
@@ -45,6 +53,17 @@ layout_mode = 2
 
 [node name="B" parent="Choice/V" instance=ExtResource("3_daa6r")]
 layout_mode = 2
+
+[node name="TitleScreen" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_2kl6q")
+expand_mode = 1
+script = SubResource("GDScript_2kl6q")
 
 [connection signal="round_finished" from="UIRooot" to="." method="_on_ui_rooot_round_finished"]
 [connection signal="pressed" from="Choice/V/A" to="." method="_on_a_pressed"]

@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://blry5awycta02" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_description.png" id="1_ns2b1"]
 [ext_resource type="Script" uid="uid://87wuuxn2t454" path="res://scenes/enemy_choice.gd" id="2_cuf1c"]
-[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="2_l17hd"]
 [ext_resource type="FontFile" uid="uid://jcsg5f74m1ic" path="res://assets/fonts/m5x7.ttf" id="3_cuf1c"]
+[ext_resource type="Texture2D" uid="uid://cplqkqgfe4ma7" path="res://assets/sprites/Enemies/Time Fairy.png" id="4_cuf1c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uh6n4"]
 texture = ExtResource("1_ns2b1")
@@ -62,9 +62,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -128.0
-offset_right = 64.0
+offset_left = -47.5
+offset_top = -123.0
+offset_right = 45.5
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("2_l17hd")
+texture = ExtResource("4_cuf1c")
+stretch_mode = 2
