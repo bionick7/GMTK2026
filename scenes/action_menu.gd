@@ -39,7 +39,10 @@ func get_bbcode_action_display(action: ActionResource) -> String:
 	for status in action.statuses:
 		# TODO: replace with icons
 		#txt += "[img]res://assets/sprites/Atlases/heal_icon.tres[/img] [color=#3fac95]%d[/color] " % action.heal
-		txt += "%s [%d] ;" % [status.effect, status.duration]
+		if status.duration < 0:
+			txt += "%s self [%d] ;" % [status.effect, absi(status.duration)]
+		else:
+			txt += "%s [%d] ;" % [status.effect, absi(status.duration)]
 	txt = txt.rstrip(";")
 	txt += "\n" + action.description
 	return txt

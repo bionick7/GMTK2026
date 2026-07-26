@@ -1,17 +1,17 @@
 SKILL,DESCRIPTION,COST,DAMAGE,HEALTH,BLOCK,EFFECT,DURATION,CATEGORY
-Icicle,small damage,1,1,,,,,Fight
-Ice Chunk,medium damage,3,2,,,,,Fight
-Ice Storm,big damage. skips 1 turn for the player,10,7,,,delay,-1,Fight
-Clone,"makes a clone of the user that repeats the same actions (double damage, heal, block value)",15,-,,,double_damage,-3,Fight
-The World,allows the user to use any 5 actions for free for 1 turn,20,-,,,delay;no_mana,5;-5,Fight
-Hold,Does nothing for 2 turns,0,,,,delay,-1,Block
-Freeze,delays target turn by 1,3,-,,,delay,1,Block
-Mega Frost,delays target turn by 2,7,-,,,delay,2,Block
-Blood Frost,damages target every turn if they act,10,-,,,poison(2),3,Block
-Snow Cloud,mana cost is doubled for target,15,-,,,double_mana,2,Block
-Maki Modoshi,rewind X amount of turns,20,,,,,,Block
-Holy Drop,Heal for a small amount,2,-,2,,,,Heal
-Holy Cup,Heal a moderate ammount,4,-,4,,,,Heal
-Holy Rain,Heal for the next 2 turns,10,-1,,,heal(2),-2,Heal
-Life Rob,Steals life-time from the target ,5,2,2,,,,Heal
-Drain body,Generates mana in exchange for health and skipping a turn,-10,,-5,,delay,-1,Heal
+Icicle,Low damage attack.,1,1,,,,,Fight
+Ice Chunk,Medium damage attack.,3,2,,,,,Fight
+Ice Storm,High damage attack. Skips 1 player turn .,10,7,,,delay,-1,Fight
+Clone,"Clone you, allowing repetition of the same actions (double damage, heal, block value etc.).",15,-,,,double_damage,-3,Fight
+The World,Use any 5 actions for free on the next turn.,20,-,,,delay;no_mana,5;-5,Fight
+Hold,Do nothing for this turn and the next,0,,,,delay,-1,Block
+Freeze,Delay target by 1 turn.,3,-,,,delay,1,Block
+Mega Frost,Delay target by 2 turns.,7,-,,,delay,2,Block
+Blood Frost,Damages the next 2 turns.,10,-,,,poison(2),3,Block
+Snow Cloud,Double mana costs for the target for 2 turns.,15,-,,,double_mana,2,Block
+Spare,Try the peacefull option to advance. Maybe someone will understand?,1,,,,,,Block
+Holy Drop,Heal for a small amount.,2,-,2,,,,Heal
+Holy Cup,Heal a moderate amount.,4,-,4,,,,Heal
+Holy Rain,Heal over 2 turns. May also heal the enemy.,10,-1,,,heal(2),-2,Heal
+Life Rob,Steals life-time from the target.,5,2,2,,,,Heal
+Drain body,Generate mana in exchange for health and skipping a turn.,-10,,-5,,delay,-1,Heal

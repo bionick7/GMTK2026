@@ -21,6 +21,7 @@ offset_right = 320.0
 offset_bottom = 240.0
 script = ExtResource("1_cufgd")
 meta_state = 1
+start_enemy = "Shrimobi"
 
 [node name="UIRooot" parent="." instance=ExtResource("1_4bcw6")]
 tab_button_group = SubResource("ButtonGroup_daa6r")

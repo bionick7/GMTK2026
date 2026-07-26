@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=44 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Theme" uid="uid://snchaitq3fef" path="res://assets/main_ui.tres" id="1_q1h1b"]
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
@@ -10,13 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://b03uw4oqfhjch" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
 [ext_resource type="LabelSettings" uid="uid://cl68cr2iqa15u" path="res://assets/default_label_settings.tres" id="5_07w1x"]
 [ext_resource type="Texture2D" uid="uid://bdtg0x7r5xpgd" path="res://assets/sprites/UI/Icon_container_and_Dialogue_box.png" id="5_dmway"]
-[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="5_nkhet"]
 [ext_resource type="Texture2D" uid="uid://4pogvk30a3yf" path="res://assets/sprites/UI/HEAL.png" id="5_o8pct"]
 [ext_resource type="Texture2D" uid="uid://dpx0gspgpcu8r" path="res://assets/sprites/UI/BLOCK.png" id="6_u0g26"]
 [ext_resource type="Texture2D" uid="uid://bikv0qxwcmm70" path="res://assets/sprites/UI/PlayerHP_empty.png" id="7_af52h"]
 [ext_resource type="PackedScene" uid="uid://coy4im5ud2r8t" path="res://scenes/action_menu.tscn" id="7_ou7aw"]
 [ext_resource type="Script" uid="uid://cw24ue5yd58ld" path="res://scenes/status_indicator.gd" id="7_q1h1b"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
+[ext_resource type="Texture2D" uid="uid://byradhvwxn54c" path="res://assets/sprites/Enemies/shrimobi.png" id="8_iy0gn"]
 [ext_resource type="Texture2D" uid="uid://bkmgu1ya50lti" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
 [ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
 [ext_resource type="AudioStream" uid="uid://bbhr8i4wcj88k" path="res://sounds/sfx/enemy_hurt.wav" id="11_sf56f"]
@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://cyskjtx4y8nhj" path="res://sounds/sfx/player_hurt.wav" id="18_d5in4"]
 [ext_resource type="AudioStream" uid="uid://cyakndssadi0m" path="res://sounds/sfx/buff.wav" id="19_m86nc"]
 [ext_resource type="AudioStream" uid="uid://c5ons2flos47e" path="res://sounds/sfx/debuff.wav" id="20_iy0gn"]
+[ext_resource type="AudioStream" uid="uid://qtj0ckfs3gy0" path="res://sounds/sfx/click.wav" id="25_iy0gn"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_af52h"]
 allow_unpress = true
@@ -153,8 +154,7 @@ script = ExtResource("3_lvn8x")
 
 [node name="Sprite" type="Sprite2D" parent="BattlefieldLogic/Enemy"]
 position = Vector2(53, 53)
-scale = Vector2(0.609375, 0.609375)
-texture = ExtResource("5_nkhet")
+texture = ExtResource("8_iy0gn")
 
 [node name="ProgressBar" type="ProgressBar" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("target")]
 custom_minimum_size = Vector2(0, 10)
@@ -385,6 +385,9 @@ button_group = SubResource("ButtonGroup_af52h")
 shortcut = SubResource("Shortcut_gm1nq")
 texture_normal = ExtResource("6_u0g26")
 
+[node name="ButtonClicks" type="AudioStreamPlayer" parent="ActionMenuButtons"]
+stream = ExtResource("25_iy0gn")
+
 [node name="ActionMenu" type="TabContainer" parent="."]
 layout_mode = 0
 offset_left = 1.0
@@ -444,20 +447,13 @@ offset_bottom = 152.0
 mouse_filter = 2
 texture = ExtResource("10_o8pct")
 
-[node name="Next" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 239.0
-offset_top = 139.0
-offset_right = 298.0
-offset_bottom = 170.0
-text = "Next "
-
 [connection signal="die" from="BattlefieldLogic/Enemy" to="." method="_on_enemy_die"]
 [connection signal="enemy_action" from="BattlefieldLogic/Enemy" to="BattlefieldLogic" method="enemy_action"]
 [connection signal="enemy_turn_ended" from="BattlefieldLogic/Enemy" to="BattlefieldLogic" method="_on_enemy_turn_ended"]
 [connection signal="die" from="BattlefieldLogic/Player" to="." method="_on_player_die"]
+[connection signal="pressed" from="ActionMenuButtons/H/Fight" to="ActionMenuButtons/ButtonClicks" method="play"]
+[connection signal="pressed" from="ActionMenuButtons/H/Heal" to="ActionMenuButtons/ButtonClicks" method="play"]
+[connection signal="pressed" from="ActionMenuButtons/H/Block" to="ActionMenuButtons/ButtonClicks" method="play"]
 [connection signal="on_action_chosen" from="ActionMenu/Fight" to="BattlefieldLogic" method="player_action"]
 [connection signal="on_action_chosen" from="ActionMenu/Heal" to="BattlefieldLogic" method="player_action"]
 [connection signal="on_action_chosen" from="ActionMenu/Block" to="BattlefieldLogic" method="player_action"]
-[connection signal="pressed" from="Next" to="BattlefieldLogic" method="_on_next_pressed"]

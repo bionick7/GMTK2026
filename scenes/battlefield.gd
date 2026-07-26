@@ -61,13 +61,19 @@ func _handle_attack(action: ActionResource, from: EnemyPlayerBase,
 	from.apply_block(action.block * multiplier)
 	for status in action.statuses:
 		if status.duration < 0:
-			from.apply_status(-status.duration, status.effect)
+			from.apply_status(-status.duration + 1, status.effect)
 		else:
 			to.apply_status(status.duration, status.effect)
 
 func player_action(action: ActionResource, target: Enemy) -> void:
 	$"../ActionMenu".current_tab = 0
 	if turn_fsm not in [TurnState.AWAITING_FIRST_PLAYER_INPUT, TurnState.AWAITING_SECOND_PLAYER_INPUT]:
+		return
+		
+	# Special interactions (Hard-coded)
+	if target.enemy_type == "Water Fairy" and action.name == "Spare":
+		# Doing it the improper way, since out architecture is a bit fucked
+		get_parent()._on_enemy_die()
 		return
 
 	_handle_attack(action, player, target)

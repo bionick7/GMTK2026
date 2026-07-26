@@ -33,8 +33,12 @@ func _on_player_die() -> void:
 	round_finished.emit(false)
 	$BattlefieldLogic.battle_end()
 	print("Player died")
+	# TODO: Play death animation
 
 func _on_enemy_die() -> void:
 	round_finished.emit(true)
 	$BattlefieldLogic.battle_end()
 	print("Enemy died")
+
+func play() -> void:
+	pass # Replace with function body.
