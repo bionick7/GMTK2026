@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7cws5852gv2h"]
+[gd_scene load_steps=9 format=3 uid="uid://b7cws5852gv2h"]
 
 [ext_resource type="PackedScene" uid="uid://fqb81nia2a3r" path="res://scenes/ui_root.tscn" id="1_4bcw6"]
 [ext_resource type="Script" uid="uid://dtvfcycbwm4de" path="res://scenes/progress_monitor.gd" id="1_cufgd"]
 [ext_resource type="PackedScene" uid="uid://bvx0mqut0w828" path="res://scenes/EnemyChoice.tscn" id="3_daa6r"]
-[ext_resource type="Texture2D" uid="uid://dipfkw15e0lme" path="res://assets/sprites/Title screen/title.png" id="4_2kl6q"]
+[ext_resource type="Texture2D" uid="uid://dy30xxls244l2" path="res://assets/sprites/Title screen/title.png" id="4_2kl6q"]
+[ext_resource type="PackedScene" uid="uid://bjaqaqvtsk8qx" path="res://scenes/game_over.tscn" id="4_uh6n4"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_daa6r"]
 allow_unpress = true
@@ -20,7 +21,7 @@ script/source = "extends TextureRect
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		hide()
+		queue_free()
 "
 
 [node name="ProgressMonitor" type="Control"]
@@ -53,6 +54,10 @@ layout_mode = 2
 
 [node name="B" parent="Choice/V" instance=ExtResource("3_daa6r")]
 layout_mode = 2
+
+[node name="DeathAnimation" parent="." instance=ExtResource("4_uh6n4")]
+visible = false
+layout_mode = 0
 
 [node name="TitleScreen" type="TextureRect" parent="."]
 layout_mode = 1

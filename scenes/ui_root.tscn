@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=46 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Theme" uid="uid://snchaitq3fef" path="res://assets/main_ui.tres" id="1_q1h1b"]
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
@@ -17,7 +17,9 @@
 [ext_resource type="Script" uid="uid://cw24ue5yd58ld" path="res://scenes/status_indicator.gd" id="7_q1h1b"]
 [ext_resource type="Texture2D" uid="uid://b08e20mck13r7" path="res://assets/sprites/UI/PlayerHP_full.png" id="8_d25nc"]
 [ext_resource type="Texture2D" uid="uid://byradhvwxn54c" path="res://assets/sprites/Enemies/shrimobi.png" id="8_iy0gn"]
+[ext_resource type="Texture2D" uid="uid://g82ehukoga7r" path="res://assets/sprites/UI/EnemyHP_empty.png" id="9_6y4co"]
 [ext_resource type="Texture2D" uid="uid://bkmgu1ya50lti" path="res://assets/sprites/UI/skills menu/Skills_menu_Fight_hovered.png" id="10_o8pct"]
+[ext_resource type="Texture2D" uid="uid://bj4mr7nvyjvqa" path="res://assets/sprites/UI/EnemyHP_full.png" id="10_rtxms"]
 [ext_resource type="Script" uid="uid://dv3bioi7lfyx5" path="res://scripts/actrion_resource.gd" id="10_u0g26"]
 [ext_resource type="AudioStream" uid="uid://bbhr8i4wcj88k" path="res://sounds/sfx/enemy_hurt.wav" id="11_sf56f"]
 [ext_resource type="Script" uid="uid://0yhkihpp2f76" path="res://scenes/healthbar.gd" id="12_42imw"]
@@ -32,16 +34,16 @@
 [sub_resource type="ButtonGroup" id="ButtonGroup_af52h"]
 allow_unpress = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fswbb"]
-bg_color = Color(0.921569, 0.419608, 0.435294, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkhet"]
-bg_color = Color(0.246693, 0.674632, 0.584268, 1)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fswbb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm1nq"]
 bg_color = Color(0.545174, 0.898375, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hkyfq"]
+font_color = Color(0.780392, 0.984314, 0.72549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0copk"]
+font_color = Color(0.780392, 0.984314, 0.72549, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvnly"]
 
@@ -156,17 +158,16 @@ script = ExtResource("3_lvn8x")
 position = Vector2(53, 53)
 texture = ExtResource("8_iy0gn")
 
-[node name="ProgressBar" type="ProgressBar" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("target")]
+[node name="ProgressBar" type="TextureProgressBar" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("target")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 13.0
 grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_fswbb")
-theme_override_styles/fill = SubResource("StyleBoxFlat_nkhet")
-value = 27.69
-show_percentage = false
+value = 28.0
+texture_under = ExtResource("9_6y4co")
+texture_progress = ExtResource("10_rtxms")
 script = ExtResource("12_42imw")
 target = NodePath("..")
 
@@ -185,12 +186,12 @@ show_percentage = false
 
 [node name="HPLabel" type="Label" parent="BattlefieldLogic/Enemy/ProgressBar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 19.0
+offset_bottom = 16.0
+text = "10"
+label_settings = SubResource("LabelSettings_hkyfq")
 
 [node name="StatusIndicator" type="RichTextLabel" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("entity")]
 layout_mode = 0
@@ -280,11 +281,11 @@ show_percentage = false
 [node name="HPLabel" type="Label" parent="BattlefieldLogic/Player/PlayerHealth"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 10.0
+offset_top = 97.0
 offset_right = 19.0
-offset_bottom = 24.0
+offset_bottom = 111.0
 text = "10"
-label_settings = ExtResource("5_07w1x")
+label_settings = SubResource("LabelSettings_0copk")
 horizontal_alignment = 2
 
 [node name="StatusIndicator" type="RichTextLabel" parent="BattlefieldLogic/Player" node_paths=PackedStringArray("entity")]

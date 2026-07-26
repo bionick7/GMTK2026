@@ -30,10 +30,10 @@ func _on_action_tab_changed(x: BaseButton):
 	$ActionMenu.current_tab = 0
 
 func _on_player_die() -> void:
-	round_finished.emit(false)
 	$BattlefieldLogic.battle_end()
 	print("Player died")
-	# TODO: Play death animation
+	await get_tree().create_timer(1).timeout
+	round_finished.emit(false)
 
 func _on_enemy_die() -> void:
 	round_finished.emit(true)

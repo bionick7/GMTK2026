@@ -1,11 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvx0mqut0w828"]
+[gd_scene load_steps=10 format=3 uid="uid://bvx0mqut0w828"]
 
+[ext_resource type="Texture2D" uid="uid://cjf1bslo7ymhj" path="res://assets/sprites/UI/panels_pressed.png" id="1_kbser"]
 [ext_resource type="Texture2D" uid="uid://blry5awycta02" path="res://assets/sprites/UI/skills menu/Skills_menu_skill_description.png" id="1_ns2b1"]
 [ext_resource type="Script" uid="uid://87wuuxn2t454" path="res://scenes/enemy_choice.gd" id="2_cuf1c"]
 [ext_resource type="FontFile" uid="uid://jcsg5f74m1ic" path="res://assets/fonts/m5x7.ttf" id="3_cuf1c"]
 [ext_resource type="Texture2D" uid="uid://cplqkqgfe4ma7" path="res://assets/sprites/Enemies/Time Fairy.png" id="4_cuf1c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uh6n4"]
+texture = ExtResource("1_kbser")
+texture_margin_left = 40.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ao8qh"]
 texture = ExtResource("1_ns2b1")
 texture_margin_left = 40.0
 texture_margin_top = 5.0
@@ -23,7 +31,9 @@ offset_right = 139.0
 offset_bottom = 245.0
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_uh6n4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_uh6n4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uh6n4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ao8qh")
 script = ExtResource("2_cuf1c")
 
 [node name="Title" type="Label" parent="."]

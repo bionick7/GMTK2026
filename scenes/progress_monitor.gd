@@ -26,14 +26,14 @@ func _ready() -> void:
 	if start_enemy in DataManager.enemy_list:
 		restart_combat({ enemy_type = start_enemy })
 	elif MetaState.CHOICE:
-		_on_ui_rooot_round_finished(false)
+		_spawn_choices()
 	else:
 		$Choice.hide()
 		
 func _get_2_random_enemies() -> Array[EnemyType]:
 	var valid_enemy_types = []
 	for k in DataManager.enemy_list:
-		printt(k, DataManager.enemy_list[k].levels)
+		#printt(k, DataManager.enemy_list[k].levels)
 		if DataManager.enemy_list[k].levels & (1 << (level - 1)) != 0:
 			valid_enemy_types.append(k)
 		
@@ -57,7 +57,15 @@ func _on_ui_rooot_round_finished(player_won: bool) -> void:
 	if player_won:
 		game_floor += 1
 	else:
+		# Play and await death animation from here
+		$DeathAnimation.show()
+		$DeathAnimation/AnimationPlayer.play("Game over animation")
+		await $DeathAnimation/AnimationPlayer.animation_finished
+		$DeathAnimation.hide()
 		game_floor = 0
+	_spawn_choices()
+	
+func _spawn_choices():
 	var enemies = _get_2_random_enemies()
 	choices = [
 		{ enemy_type = enemies[0].enemy_name },
@@ -69,6 +77,8 @@ func _on_ui_rooot_round_finished(player_won: bool) -> void:
 	
 	meta_state = MetaState.CHOICE
 	$Choice.show()
+	
+
 
 func restart_combat(new_combat_data: Dictionary) -> void:
 	current_ui_root.setup(new_combat_data.enemy_type)
