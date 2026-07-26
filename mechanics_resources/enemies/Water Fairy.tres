@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://e18qy6mfwkxu"]
 
-[ext_resource type="Texture2D" uid="uid://cnyyi0fck4vc7" path="res://assets/sprites/Enemies/water fairy.png" id="1_ck2ny"]
+[ext_resource type="Texture2D" uid="uid://dadayu5ec2v8q" path="res://assets/sprites/Enemies/ice Fairy.png" id="1_ck2ny"]
 [ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_5p3sf"]
 
 [resource]
