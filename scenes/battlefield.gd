@@ -33,6 +33,7 @@ func setup(enemy_type: String) -> void:
 	player.reset()
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		enemy.reset(enemy_type)
+	pendulum.set_player_mana(15)
 	turn_fsm = TurnState.AWAITING_FIRST_PLAYER_INPUT
 
 func battle_end() -> void:
@@ -118,7 +119,8 @@ func set_gamestate(data: Dictionary) -> void:
 func _on_next_pressed() -> void:
 	if turn_fsm == TurnState.OUT_OF_GAME:
 		return
-	
+		
+	player.tick_delay()
 	turn_fsm = TurnState.ENEMY_TURN_ANIMATION
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		enemy.run()
@@ -127,11 +129,12 @@ func _on_next_pressed() -> void:
 func _on_enemy_turn_ended() -> void:
 	if turn_fsm == TurnState.OUT_OF_GAME:
 		return  # Game ended -- break the cycle
+		
+	player.evaluate_stats()
 	if player.has_status("delay"):
 		turn_fsm = TurnState.PLAYER_TURN_ANIMATION
 		await get_tree().create_timer(0.5).timeout
 		print("Player is delayed (%d)" % player.statuses.get("delay", 0))
-		player.tick_delay()
 		_on_next_pressed()
 	else:
 		turn_fsm = TurnState.AWAITING_FIRST_PLAYER_INPUT
