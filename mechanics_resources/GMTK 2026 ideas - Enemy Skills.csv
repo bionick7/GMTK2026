@@ -18,10 +18,10 @@ Green bash,A simple attack for a vegetation,5,4,,,,,Mossatuar;Moss Man
 Hydration,Water's locked to their feet now. (Heals user),10,,4,,,,Mossatuar;Moss Man
 Shiver,An opening for attack,1,,,,,,Mossatuar;Moss Man
 Green slash,A very dangerous move to endure.,10,5,,,,,Mossatuar
-Chant,It... has a voice? (does nothing),2,,,,,,Old Doll
-Inch closer,???? (makes target too scared to act for their turn),3,,,,delay,1,Old Doll
-Whisper,Hm? (does nothing),2,,,,,,Old Doll
-Ice storm,A massive shift in internal temperature and air currents,10,5,,,,,Old Doll;Angel's Corpse
+Chant,It... has a voice? (does nothing),2,,,,,,Forgotten Doll
+Inch closer,???? (makes target too scared to act for their turn),3,,,,delay,1,Forgotten Doll
+Whisper,Hm? (does nothing),2,,,,,,Forgotten Doll
+Ice storm,A massive shift in internal temperature and air currents,10,5,,,,,Forgotten Doll;Angel's Corpse
 Murmer,It... has a voice? (does nothing),2,,,,,,Living Glass
 Crakle,Who's animating this thing? (does nothing),2,,,,,,Living Glass
 Glassier,A very dangerous barrage of glass pieces.,7,4,,,,,Living Glass

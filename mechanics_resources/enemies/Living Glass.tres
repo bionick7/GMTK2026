@@ -9,4 +9,4 @@ enemy_name = "Living Glass"
 description = "The very instruments that used to make time legible now serve it's obfuscation"
 icon = ExtResource("1_or54y")
 hp = 30
-levels = 12
+levels = 0

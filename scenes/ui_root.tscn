@@ -138,7 +138,7 @@ tab_button_group = SubResource("ButtonGroup_af52h")
 position = Vector2(161, 120)
 sprite_frames = SubResource("SpriteFrames_0copk")
 autoplay = "default"
-frame_progress = 0.64125
+frame_progress = 0.676929
 script = SubResource("GDScript_rtxms")
 
 [node name="Pendulum" parent="." groups=["Pendulum"] instance=ExtResource("3_q4i1q")]

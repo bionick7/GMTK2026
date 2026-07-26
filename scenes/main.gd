@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_sepuku"):
-		round_finished.emit(false)
+		_on_player_die()
 	
 func setup(enemy_type: String) -> void:
 	$BattlefieldLogic.setup(enemy_type)
@@ -34,12 +34,10 @@ func _on_player_die() -> void:
 	print("Player died")
 	await get_tree().create_timer(0.5).timeout
 	await MusicManager.music_tick
+	$%Player.hp = $%Player.max_hp
 	round_finished.emit(false)
 
 func _on_enemy_die() -> void:
 	round_finished.emit(true)
 	$BattlefieldLogic.battle_end()
 	print("Enemy died")
-
-func play() -> void:
-	pass # Replace with function body.

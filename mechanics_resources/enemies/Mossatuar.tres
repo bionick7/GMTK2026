@@ -9,4 +9,4 @@ enemy_name = "Mossatuar"
 description = "Bulky, mossy and ferocious"
 icon = ExtResource("1_0v5ov")
 hp = 30
-levels = 6
+levels = 0

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://dotewiiwxaac0"]
 
-[ext_resource type="Texture2D" uid="uid://bgwii8470pwed" path="res://assets/sprites/icon.svg" id="1_8ewch"]
+[ext_resource type="Texture2D" uid="uid://bf0iq442ux0v" path="res://assets/sprites/Enemies/angel's corpsel.png" id="1_8ewch"]
 [ext_resource type="Script" uid="uid://bplr1b7w1sc02" path="res://scripts/enemy_rsc.gd" id="2_jlp51"]
 
 [resource]
