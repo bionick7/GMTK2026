@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://cl68cr2iqa15u" path="res://assets/default_label_settings.tres" id="4_wn2sm"]
 
 [node name="ActionButton" type="TextureButton"]
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_u7r83")
 texture_hover = ExtResource("2_ffiw1")
 script = ExtResource("3_ffiw1")

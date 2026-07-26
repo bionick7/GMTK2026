@@ -22,6 +22,7 @@ font = ExtResource("3_cuf1c")
 offset_right = 139.0
 offset_bottom = 245.0
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_uh6n4")
 script = ExtResource("2_cuf1c")
 
