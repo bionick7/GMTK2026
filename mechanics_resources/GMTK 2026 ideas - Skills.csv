@@ -12,6 +12,6 @@ Snow Cloud,Double mana costs for the target for 2 turns.,15,-,,,double_mana,2,Bl
 Spare,Try the peacefull option to advance. Maybe someone will understand?,1,,,,,,Block
 Holy Drop,Heal for a small amount.,2,-,2,,,,Heal
 Holy Cup,Heal a moderate amount.,4,-,4,,,,Heal
-Holy Rain,Heal over 2 turns. May also heal the enemy.,10,-1,,,heal(2),-2,Heal
+Holy Rain,Heal over 2 turns. May also heal the enemy.,3,-1,,,heal(2),-3,Heal
 Life Rob,Steals life-time from the target.,5,2,2,,,,Heal
 Drain body,Generate mana in exchange for health and skipping a turn.,-10,,-5,,delay,-1,Heal

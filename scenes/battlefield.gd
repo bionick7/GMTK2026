@@ -140,6 +140,7 @@ func _on_enemy_turn_ended() -> void:
 	if player.has_status("delay"):
 		turn_fsm = TurnState.PLAYER_TURN_ANIMATION
 		await get_tree().create_timer(0.5).timeout
+		await MusicManager.music_tick
 		print("Player is delayed (%d)" % player.statuses.get("delay", 0))
 		_on_next_pressed()
 	else:

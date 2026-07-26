@@ -13,7 +13,6 @@ var action_pool: Array[ActionResource] = []
 	$Action2Text,
 ]
 
-
 @onready var pendulum: Pendulum = %Pendulum
 
 func _init() -> void:
@@ -40,13 +39,16 @@ func _get_next_action() -> ActionResource:
 			action_pool.append(random_action)
 		action_pool.shuffle()
 	assert(len(action_pool) > 0)
-	
+		
 	var does_mana_complient_action_exist := false
 	for action in action_pool:
 		if action.cost <= pendulum.enemy_mana:
 			does_mana_complient_action_exist = true
-			
-	if does_mana_complient_action_exist and action_pool[0].cost > pendulum.enemy_mana:
+	
+	if not does_mana_complient_action_exist:
+		return null
+	
+	while does_mana_complient_action_exist and action_pool[0].cost > pendulum.enemy_mana:
 		action_pool.pop_front()
 	
 	return action_pool.pop_front()
@@ -67,6 +69,7 @@ func run() -> void:
 	if hp <= 0:
 		return
 	await get_tree().create_timer(0.5).timeout
+	await MusicManager.music_tick
 	var N_actions := 1 
 	if has_status("delay"):
 		# TODO: Should be replaced by animation
@@ -80,17 +83,19 @@ func run() -> void:
 		N_actions = 0
 		
 	evaluate_stats()
-		
+	
 	for action_label in action_labels:
 		action_label.text = ""
+	var label_animation = get_tree().create_tween().set_parallel(true)
 	for i in range(N_actions):
 		var action = _get_next_action()
-		var label_animation = get_tree().create_tween().set_parallel(true)
 		if is_instance_valid(action):
 			enemy_action.emit(action, self)
 			action_labels[i].text = action.name
-			action_labels[i].visible_ratio = 0
-			label_animation.tween_property(action_labels[i], "visible_ratio", 1, .2)
+		else:
+			action_labels[i].text = ""
+		action_labels[i].visible_ratio = 0
+		label_animation.tween_property(action_labels[i], "visible_ratio", 1, .2)
 	
 	tick_delay()
 	enemy_turn_ended.emit()

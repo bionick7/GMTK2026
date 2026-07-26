@@ -32,7 +32,8 @@ func _on_action_tab_changed(x: BaseButton):
 func _on_player_die() -> void:
 	$BattlefieldLogic.battle_end()
 	print("Player died")
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
+	await MusicManager.music_tick
 	round_finished.emit(false)
 
 func _on_enemy_die() -> void:

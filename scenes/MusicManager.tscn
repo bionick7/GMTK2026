@@ -1,9 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://lasx7mn6c4op"]
+[gd_scene load_steps=3 format=3 uid="uid://dl5c42agrgbse"]
 
 [ext_resource type="AudioStream" uid="uid://cikjjruybuqij" path="res://sounds/music/Tower of Time.wav" id="1_k17rw"]
+
+[sub_resource type="GDScript" id="GDScript_k17rw"]
+script/source = "extends AudioStreamPlayer
+
+signal music_tick
+
+var ticks_elapsed := 0
+
+func _on_music_tick():
+	#print([\"Tick\", \"Tock\"][ticks_elapsed % 2])
+	ticks_elapsed += 1
+	music_tick.emit()
+"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_k17rw")
 autoplay = true
 mix_target = 1
 bus = &"Music"
+script = SubResource("GDScript_k17rw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.667
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_music_tick"]

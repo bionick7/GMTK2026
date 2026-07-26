@@ -1,11 +1,12 @@
-[gd_scene load_steps=46 format=3 uid="uid://fqb81nia2a3r"]
+[gd_scene load_steps=49 format=3 uid="uid://fqb81nia2a3r"]
 
 [ext_resource type="Theme" uid="uid://snchaitq3fef" path="res://assets/main_ui.tres" id="1_q1h1b"]
 [ext_resource type="Script" uid="uid://d4dwo6fkc4wb" path="res://scenes/main.gd" id="1_q4i1q"]
 [ext_resource type="Script" uid="uid://de7mij3ytcjfl" path="res://scenes/battlefield.gd" id="2_h40sh"]
-[ext_resource type="Texture2D" uid="uid://d1jb7jtpx1eev" path="res://assets/sprites/Background/background.png" id="2_q1h1b"]
 [ext_resource type="Script" uid="uid://cld6b7vy8o42b" path="res://scenes/enemy.gd" id="3_lvn8x"]
 [ext_resource type="PackedScene" uid="uid://cwdd7w25lcvgk" path="res://scenes/pendulum.tscn" id="3_q4i1q"]
+[ext_resource type="Texture2D" uid="uid://da53ugb0fgg08" path="res://assets/sprites/Background/frame1.png" id="3_rtxms"]
+[ext_resource type="Texture2D" uid="uid://d4drf1fvmc4ip" path="res://assets/sprites/Background/frame2.png" id="4_hkyfq"]
 [ext_resource type="Script" uid="uid://b0fvh4i6r3nxb" path="res://scenes/player.gd" id="4_lvn8x"]
 [ext_resource type="Texture2D" uid="uid://b03uw4oqfhjch" path="res://assets/sprites/UI/FIGHT.png" id="4_ou7aw"]
 [ext_resource type="LabelSettings" uid="uid://cl68cr2iqa15u" path="res://assets/default_label_settings.tres" id="5_07w1x"]
@@ -33,6 +34,30 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_af52h"]
 allow_unpress = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0copk"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_rtxms")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_hkyfq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_rtxms"]
+script/source = "extends AnimatedSprite2D
+
+func _ready() -> void:
+	MusicManager.music_tick.connect(_synch, ConnectFlags.CONNECT_ONE_SHOT)
+
+func _synch() -> void:
+	play()
+"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fswbb"]
 
@@ -109,16 +134,18 @@ theme = ExtResource("1_q1h1b")
 script = ExtResource("1_q4i1q")
 tab_button_group = SubResource("ButtonGroup_af52h")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="AnimatedSprite2D" parent="."]
 position = Vector2(161, 120)
-texture = ExtResource("2_q1h1b")
+sprite_frames = SubResource("SpriteFrames_0copk")
+autoplay = "default"
+frame_progress = 0.64125
+script = SubResource("GDScript_rtxms")
 
 [node name="Pendulum" parent="." groups=["Pendulum"] instance=ExtResource("3_q4i1q")]
 unique_name_in_owner = true
 layout_mode = 1
 offset_top = 1.0
 offset_bottom = 129.0
-max_value = 20.0
 value = 11.87
 initial_mana = 10
 max_mana = 20
@@ -147,7 +174,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -53.0
-offset_top = -55.0
+offset_top = -77.0
 offset_right = 53.0
 offset_bottom = 55.0
 grow_horizontal = 2
@@ -155,7 +182,7 @@ grow_vertical = 2
 script = ExtResource("3_lvn8x")
 
 [node name="Sprite" type="Sprite2D" parent="BattlefieldLogic/Enemy"]
-position = Vector2(53, 53)
+position = Vector2(53, 83)
 texture = ExtResource("8_iy0gn")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="BattlefieldLogic/Enemy" node_paths=PackedStringArray("target")]
