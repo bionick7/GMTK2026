@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjaqaqvtsk8qx"]
+[gd_scene load_steps=6 format=3 uid="uid://bu2q8ccsmig3d"]
 
 [ext_resource type="LabelSettings" uid="uid://cl68cr2iqa15u" path="res://assets/default_label_settings.tres" id="1_wqhvx"]
 [ext_resource type="AudioStream" uid="uid://cyakndssadi0m" path="res://sounds/sfx/buff.wav" id="2_tbwuq"]
